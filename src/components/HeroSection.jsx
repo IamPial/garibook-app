@@ -92,7 +92,7 @@ export default function HeroSection() {
                <p className="mt-7 max-w-xl text-base sm:text-2xl text-gray-400 leading-relaxed">
               {copy.description}
             </p>
-            <div className="flex w-70 bg-[#fdd300] hover:bg-[#e6c003] mt-8  justify-between text-lg p-5 font-medium rounded-lg text-black duration-300 transition-all hover:scale-105">
+            <div className="flex w-70 bg-[#fdd300] hover:bg-[#e6c003] mt-8  justify-between text-lg p-5 font-medium text-black duration-300 transition-all hover:scale-105 rounded-2xl">
                <button type="button">{t.hero.downloadApp}</button> <ArrowRight />
             </div>
             </div>

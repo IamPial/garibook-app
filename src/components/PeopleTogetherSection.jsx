@@ -1,25 +1,28 @@
 import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function PeopleTogetherSection() {
+  const { t } = useLanguage();
+  const copy = t.sections.together;
   const cards = [
     {
-      title: 'Airport Rentals',
-      subtitle: 'Effortless flight transfers & greetings',
+      title: copy.airport,
+      subtitle: copy.airportDesc,
       image: '/assets/images/services/Airport_Rental_Webp.webp',
-      tag: 'Airport Pickup & Drop',
+      tag: copy.airportTag,
     },
     {
-      title: 'Family Trips',
-      subtitle: 'Comfortable & spacious multi-passenger cars',
+      title: copy.family,
+      subtitle: copy.familyDesc,
       image: '/assets/images/services/family_trips.webp',
-      tag: 'Vacations & Reunions',
+      tag: copy.familyTag,
     },
     {
-      title: 'Long Tours',
-      subtitle: 'Scenic drives to Cox\'s Bazar, Sylhet & Sajek',
+      title: copy.tours,
+      subtitle: copy.toursDesc,
       image: '/assets/images/services/Group_Tour_Webp.webp',
-      tag: 'Intercity Tourism',
+      tag: copy.toursTag,
     },
   ];
 
@@ -29,14 +32,13 @@ export default function PeopleTogetherSection() {
         {/* Section Header */}
         <div className="max-w-2xl mb-12 sm:mb-16">
           <span className="text-xs font-bold text-gb-primary uppercase tracking-widest bg-gb-primary-subtle px-3 py-1 rounded-full">
-            Moments That Matter
+            {copy.badge}
           </span>
           <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">
-            More Than Miles — <br />
-            We Bring People Together
+            {copy.title}
           </h2>
           <p className="mt-3 text-slate-600 text-sm sm:text-base">
-            From returning expats landing at midnight to holiday road trips with extended family, we make every mile memorable.
+            {copy.description}
           </p>
         </div>
 

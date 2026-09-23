@@ -5,7 +5,8 @@ import { HelpCircle, MessageSquare } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function FaqSection() {
-  const { lang } = useLanguage();
+  const { t } = useLanguage();
+  const copy = t.sections.faq;
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   const categories = ['All', 'Booking & Pricing', 'Billing & Payments', 'Airport Transfers', 'Safety & Security', 'Tour & Custom Trips'];
@@ -24,15 +25,13 @@ export default function FaqSection() {
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
           <span className="text-xs font-bold text-gb-primary uppercase tracking-widest bg-gb-primary-subtle px-3 py-1 rounded-full">
-            {lang === 'bn' ? 'সাধারণ জিজ্ঞাসা' : 'Got Questions?'}
+            {copy.badge}
           </span>
           <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
-            {lang === 'bn' ? 'সচরাচর জিজ্ঞাসিত প্রশ্নাবলী' : 'Frequently Asked Questions'}
+            {copy.title}
           </h2>
           <p className="mt-3 text-slate-600 text-sm sm:text-base">
-            {lang === 'bn'
-              ? 'আমাদের আন্তঃজেলা ভ্রমণ, এয়ারপোর্ট ট্রান্সফার ও ড্রাইভার বিডিং সম্পর্কে সবকিছু জানুন।'
-              : 'Everything you need to know about our driver bidding system, transparent fares, and safety.'}
+            {copy.description}
           </p>
         </div>
 
@@ -66,17 +65,15 @@ export default function FaqSection() {
               <MessageSquare className="w-6 h-6" />
             </div>
             <div>
-              <h4 className="font-bold text-slate-900 text-base">Still have questions?</h4>
-              <p className="text-xs sm:text-sm text-slate-500">
-                Our 24/7 dedicated support team is always on standby to assist with your bookings.
-              </p>
+              <h4 className="font-bold text-slate-900 text-base">{copy.supportTitle}</h4>
+              <p className="text-xs sm:text-sm text-slate-500">{copy.supportDescription}</p>
             </div>
           </div>
           <a
             href="tel:09678112233"
             className="px-6 py-3 rounded-xl font-bold text-sm text-white bg-gb-primary hover:bg-gb-primary-dark transition-all duration-200 shadow shrink-0"
           >
-            Call 09678-112233
+            {copy.call}
           </a>
         </div>
       </div>

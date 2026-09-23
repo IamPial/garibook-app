@@ -2,45 +2,48 @@ import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight, Car, Building2, Users, Cpu, CheckCircle2 } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../context/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ServicesSection() {
+  const { t } = useLanguage();
+  const copy = t.sections.services;
   const [activeTab, setActiveTab] = useState('rides');
   const sectionRef = useRef(null);
   const cardsRef = useRef(null);
 
   const tabs = [
-    { id: 'rides', label: 'Rides', icon: Car },
-    { id: 'business', label: 'Garibook Business', icon: Building2 },
-    { id: 'club', label: 'Garibook Club', icon: Users },
-    { id: 'vms', label: 'VMS', icon: Cpu },
+    { id: 'rides', label: copy.rides, icon: Car },
+    { id: 'business', label: copy.business, icon: Building2 },
+    { id: 'club', label: copy.club, icon: Users },
+    { id: 'vms', label: copy.vms, icon: Cpu },
   ];
 
   const rideServices = [
     {
-      title: 'Intercity Car Rental',
-      desc: 'Travel between cities with comfort and confidence across Bangladesh.',
+      title: copy.intercity,
+      desc: copy.travel,
       image: '/assets/images/cars/intercity_car_rental.svg',
-      features: ['Door-to-door pickup', 'Bidding fare system', 'Verified drivers'],
+      features: [copy.door, copy.bidding, copy.verified],
     },
     {
-      title: 'Ride share',
-      desc: 'Go anywhere in the city, quickly and easily at budget-friendly rates.',
+      title: copy.rideShare,
+      desc: copy.city,
       image: '/assets/images/cars/rideshare.svg',
-      features: ['Inside-city travel', 'Quick dispatch', 'Live route tracking'],
+      features: [copy.inside, copy.dispatch, copy.tracking],
     },
     {
-      title: 'Airport Rental',
-      desc: 'Whether flying abroad or returning home, enjoy worry-free airport transfers.',
+      title: copy.airport,
+      desc: copy.airportDesc,
       image: '/assets/images/cars/airport_rental.svg',
-      features: ['Flight delay waiting', 'Luggage assistance', 'Fixed transparent rate'],
+      features: [copy.waiting, copy.luggage, copy.transparent],
     },
     {
-      title: 'Hourly Rental',
-      desc: 'Rent a dedicated car and driver by the hour, tailored to your custom schedule.',
+      title: copy.hourly,
+      desc: copy.hourlyDesc,
       image: '/assets/images/cars/hourly_rental.svg',
-      features: ['Multi-stop flexibility', 'Full day options', 'Fuel & driver included'],
+      features: [copy.stops, copy.fullDay, copy.included],
     },
   ];
 
@@ -75,13 +78,13 @@ export default function ServicesSection() {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <span className="text-xs font-bold text-gb-primary uppercase tracking-widest bg-gb-primary-subtle px-3 py-1 rounded-full">
-            What We Offer
+            {copy.badge}
           </span>
           <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
-            Our Services
+            {copy.title}
           </h2>
           <p className="mt-4 text-slate-600 text-sm sm:text-base">
-            Comprehensive transport solutions connecting travelers, enterprises, and car owners seamlessly.
+            {copy.description}
           </p>
         </div>
 
@@ -113,10 +116,10 @@ export default function ServicesSection() {
           <div>
             <div className="text-left mb-8">
               <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
-                Every Ride — One Platform
+                {copy.platform}
               </h3>
               <p className="text-sm text-slate-500 mt-1">
-                Choose the best mode of travel tailored to your group size and distance.
+                {copy.platformDescription}
               </p>
             </div>
 
@@ -162,7 +165,7 @@ export default function ServicesSection() {
                       href="#booking"
                       className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-bold text-gb-primary bg-gb-primary-subtle group-hover:bg-gb-primary group-hover:text-white transition-all duration-200"
                     >
-                      <span>Book This Ride</span>
+                      <span>{copy.book}</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </a>
                   </div>

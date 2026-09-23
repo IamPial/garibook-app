@@ -1,20 +1,23 @@
 import React from 'react';
 import { ArrowRight, CheckCircle } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function DriverSection() {
+  const { t } = useLanguage();
+  const copy = t.sections.driver;
   return (
     <section id="smart-driver" className="py-20 sm:py-28 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
         <div className="text-center max-w-xl mx-auto mb-12 sm:mb-16">
           <span className="text-xs font-bold text-gb-primary uppercase tracking-widest bg-gb-primary-subtle px-3 py-1 rounded-full">
-            Driver Partner Program
+            {copy.badge}
           </span>
           <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
-            Be a Smart Driver
+            {copy.title}
           </h2>
           <p className="mt-3 text-slate-600 text-sm sm:text-base">
-            Keep everything you earn. Join thousands of respected drivers choosing their own bids and trips.
+            {copy.description}
           </p>
         </div>
 
@@ -27,35 +30,35 @@ export default function DriverSection() {
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-6">
               <span className="inline-block text-xs font-black uppercase tracking-wider text-slate-950 bg-white/40 px-3.5 py-1.5 rounded-full border border-black/10">
-                ⭐ Zero Platform Fee for Drivers
+                {copy.zeroFee}
               </span>
 
               <h3 className="text-3xl sm:text-5xl font-black text-slate-950 tracking-tight leading-[1.1]">
-                0% Commission <br />
-                <span className="text-white drop-shadow-sm">100% Freedom</span>
+                {copy.freedom} <br />
+                <span className="text-white drop-shadow-sm">{copy.freedomTitle}</span>
               </h3>
 
               <p className="text-slate-900 text-base sm:text-lg max-w-lg font-medium leading-relaxed">
-                Set your own fare bids, pick routes you prefer, receive direct passenger payments, and enjoy complimentary road assistance anytime, anywhere.
+                {copy.body}
               </p>
 
               {/* Perks */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-sm font-semibold text-slate-950">
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-slate-950 shrink-0" />
-                  <span>Direct passenger cash / bKash</span>
+                  <span>{copy.perks[0]}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-slate-950 shrink-0" />
-                  <span>Choose long tours or short city trips</span>
+                  <span>{copy.perks[1]}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-slate-950 shrink-0" />
-                  <span>No forced trips or cancellation penalties</span>
+                  <span>{copy.perks[2]}</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-slate-950 shrink-0" />
-                  <span>24/7 Garibook driver helpline</span>
+                  <span>{copy.perks[3]}</span>
                 </div>
               </div>
 
@@ -66,7 +69,7 @@ export default function DriverSection() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-white bg-slate-950 hover:bg-slate-800 transition-all duration-200 shadow-xl hover:shadow-2xl active:scale-95"
                 >
-                  <span>Download Smart Driver App</span>
+                  <span>{copy.download}</span>
                   <ArrowRight className="w-5 h-5" />
                 </a>
               </div>

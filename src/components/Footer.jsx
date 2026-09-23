@@ -1,7 +1,10 @@
 import React from 'react';
 import { Mail, MapPin, Phone, ArrowRight, ExternalLink } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Footer() {
+  const { lang, t } = useLanguage();
+  const bn = lang === 'bn';
   return (
     <footer className="bg-slate-950 text-slate-400 font-sans border-t border-slate-900 pt-16 pb-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -15,22 +18,22 @@ export default function Footer() {
             <ul className="space-y-2.5 text-sm">
               <li>
                 <a href="#about" className="hover:text-white transition-colors">
-                  About Us
+                  {t.nav.about}
                 </a>
               </li>
               <li>
                 <a href="#reviews" className="hover:text-white transition-colors">
-                  Customer Reviews
+                  {bn ? 'গ্রাহক রিভিউ' : 'Customer Reviews'}
                 </a>
               </li>
               <li>
                 <a href="#careers" className="hover:text-white transition-colors">
-                  Career
+                  {bn ? 'ক্যারিয়ার' : 'Career'}
                 </a>
               </li>
               <li>
                 <a href="#newsroom" className="hover:text-white transition-colors">
-                  Newsroom
+                  {bn ? 'নিউজরুম' : 'Newsroom'}
                 </a>
               </li>
               <li>
@@ -40,7 +43,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors inline-flex items-center gap-1.5"
                 >
-                  <span>Garibook Map</span>
+                  <span>{bn ? 'গাড়িবুক ম্যাপ' : 'Garibook Map'}</span>
                   <ExternalLink className="w-3.5 h-3.5" />
                 </a>
               </li>
@@ -50,27 +53,27 @@ export default function Footer() {
           {/* Col 2: Services */}
           <div className="lg:col-span-3 space-y-4">
             <h4 className="text-white font-bold text-base uppercase tracking-wider">
-              Services
+              {bn ? 'সেবা' : 'Services'}
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
                 <a href="#booking" className="hover:text-white transition-colors">
-                  Intercity Rental
+                  {bn ? 'আন্তঃজেলা রেন্টাল' : 'Intercity Rental'}
                 </a>
               </li>
               <li>
                 <a href="#booking" className="hover:text-white transition-colors">
-                  Airport Pick & Drop
+                  {bn ? 'এয়ারপোর্ট পিক ও ড্রপ' : 'Airport Pick & Drop'}
                 </a>
               </li>
               <li>
                 <a href="#booking" className="hover:text-white transition-colors">
-                  Hourly Rental
+                  {bn ? 'ঘণ্টাভিত্তিক রেন্টাল' : 'Hourly Rental'}
                 </a>
               </li>
               <li>
                 <a href="#services" className="hover:text-white transition-colors">
-                  Vehicle Management System (VMS)
+                  {bn ? 'ভেহিকেল ম্যানেজমেন্ট সিস্টেম (ভিএমএস)' : 'Vehicle Management System (VMS)'}
                 </a>
               </li>
             </ul>
@@ -79,22 +82,22 @@ export default function Footer() {
           {/* Col 3: Become Our Partner */}
           <div className="lg:col-span-3 space-y-4">
             <h4 className="text-white font-bold text-base uppercase tracking-wider">
-              Become Our Partner
+              {bn ? 'পার্টনার হোন' : 'Become Our Partner'}
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
                 <a href="#smart-driver" className="hover:text-white transition-colors">
-                  Become a Smart Driver
+                  {bn ? 'স্মার্ট চালক হোন' : 'Become a Smart Driver'}
                 </a>
               </li>
               <li>
                 <a href="#services" className="hover:text-white transition-colors">
-                  Become a member of Garibook Club
+                  {bn ? 'গাড়িবুক ক্লাবের সদস্য হোন' : 'Become a member of Garibook Club'}
                 </a>
               </li>
               <li>
                 <a href="#services" className="hover:text-white transition-colors">
-                  Garibook Business for Corporate Travel
+                  {bn ? 'কর্পোরেট ভ্রমণের জন্য গাড়িবুক বিজনেস' : 'Garibook Business for Corporate Travel'}
                 </a>
               </li>
             </ul>
@@ -103,7 +106,7 @@ export default function Footer() {
           {/* Col 4: Contacts */}
           <div className="lg:col-span-3 space-y-4">
             <h4 className="text-white font-bold text-base uppercase tracking-wider">
-              Contacts
+              {bn ? 'যোগাযোগ' : 'Contacts'}
             </h4>
             <ul className="space-y-3 text-sm">
               <li className="flex items-start gap-2.5">
@@ -146,7 +149,7 @@ export default function Footer() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-white bg-gb-primary hover:bg-gb-primary-dark transition-all text-sm shadow active:scale-95"
               >
-                <span>Download App</span>
+                <span>{t.sections.download.direct}</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
             </div>
@@ -209,10 +212,10 @@ export default function Footer() {
               className="h-8 w-auto brightness-200"
             />
             <a href="#terms" className="hover:text-white transition-colors">
-              Terms & Conditions
+              {bn ? 'শর্তাবলি' : 'Terms & Conditions'}
             </a>
             <a href="#privacy" className="hover:text-white transition-colors">
-              Privacy Policy
+              {bn ? 'গোপনীয়তা নীতি' : 'Privacy Policy'}
             </a>
           </div>
 

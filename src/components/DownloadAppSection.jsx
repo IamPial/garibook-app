@@ -1,7 +1,10 @@
 import React from 'react';
 import { ArrowRight, Smartphone, QrCode, Shield, CheckCircle } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function DownloadAppSection() {
+  const { t } = useLanguage();
+  const copy = t.sections.download;
   return (
     <section className="py-16 sm:py-24 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,16 +17,15 @@ export default function DownloadAppSection() {
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-6">
               <span className="inline-block text-xs font-bold uppercase tracking-wider text-slate-900 bg-gb-warning px-3.5 py-1.5 rounded-full shadow-sm">
-                Get Started on Mobile
+                {copy.badge}
               </span>
 
               <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-[1.15]">
-                Download <br />
-                Garibook Mobile App
+                {copy.title}
               </h2>
 
               <p className="text-emerald-100 text-base sm:text-lg max-w-lg leading-relaxed">
-                Download our Customer, Smart Driver, and Enterprise App. Book rides on the go, receive instant driver bids, and track your trip live in real-time.
+                {copy.description}
               </p>
 
               {/* Perks Checklist */}
@@ -80,7 +82,7 @@ export default function DownloadAppSection() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl font-bold text-slate-900 bg-gb-warning hover:bg-gb-warning-hover transition-all shadow-md active:scale-95 text-sm"
                 >
-                  <span>Direct Download</span>
+                  <span>{copy.direct}</span>
                   <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
@@ -92,9 +94,9 @@ export default function DownloadAppSection() {
                 <div className="w-16 h-16 rounded-2xl bg-white/20 mx-auto flex items-center justify-center mb-4 text-gb-warning">
                   <QrCode className="w-10 h-10" />
                 </div>
-                <h4 className="font-extrabold text-lg text-white">Scan to Install</h4>
+                <h4 className="font-extrabold text-lg text-white">{copy.scan}</h4>
                 <p className="text-xs text-emerald-100 mt-1 mb-4">
-                  Point your phone camera to download instantly
+                  {copy.scanDescription}
                 </p>
                 <div className="bg-white p-3 rounded-2xl inline-block shadow-inner">
                   {/* Decorative QR code matrix */}

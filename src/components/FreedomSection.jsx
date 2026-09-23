@@ -1,10 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../context/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function FreedomSection() {
+  const { t } = useLanguage();
+  const copy = t.sections.freedom;
   const sectionRef = useRef(null);
   const itemsRef = useRef(null);
 
@@ -32,18 +35,18 @@ export default function FreedomSection() {
 
   const features = [
     {
-      title: 'Choose the Car',
-      desc: 'Pick what suits your comfort — from budget sedans to family microbuses and luxury VIP vans.',
+      title: copy.car,
+      desc: copy.carDesc,
       icon: '/assets/icon/car.svg',
     },
     {
-      title: 'Choose the Driver',
-      desc: 'Browse driver profiles, customer reviews, trip counts, and ratings before confirming your trip.',
+      title: copy.driver,
+      desc: copy.driverDesc,
       icon: '/assets/icon/drive.svg',
     },
     {
-      title: 'Choose the Fare',
-      desc: 'Select the competitive driver bid that fits your exact budget. Never overpay for intercity travel.',
+      title: copy.fare,
+      desc: copy.fareDesc,
       icon: '/assets/icon/price.svg',
     },
   ];
@@ -57,13 +60,13 @@ export default function FreedomSection() {
         {/* Section Header */}
         <div className="max-w-2xl mb-12 sm:mb-16">
           <span className="text-xs font-bold text-gb-warning uppercase tracking-widest bg-white/5 px-3 py-1 rounded-full border border-white/10">
-            Pioneering Freedom
+            {copy.badge}
           </span>
           <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
-            Freedom in Every Journey
+            {copy.title}
           </h2>
           <p className="mt-3 text-slate-400 text-sm sm:text-base">
-            Bangladesh’s only mobility platform where passengers and drivers connect through a fair, transparent bidding process.
+            {copy.description}
           </p>
         </div>
 

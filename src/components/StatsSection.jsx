@@ -1,18 +1,21 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLanguage } from '../context/LanguageContext';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function StatsSection() {
+  const { t } = useLanguage();
+  const copy = t.sections.stats;
   const sectionRef = useRef(null);
   const countRefs = useRef([]);
 
   const stats = [
-    { target: 150000, suffix: '+', label: 'Trip Requests', display: '150,000+' },
-    { target: 100000, suffix: '+', label: 'Total Customers', display: '100,000+' },
-    { target: 5000, suffix: '+', label: 'Active Drivers', display: '5,000+' },
-    { target: 64, suffix: '', label: 'District Covered', display: '64' },
+    { target: 150000, suffix: '+', label: copy.tripRequests },
+    { target: 100000, suffix: '+', label: copy.customers },
+    { target: 5000, suffix: '+', label: copy.drivers },
+    { target: 64, suffix: '', label: copy.districts },
   ];
 
   useEffect(() => {
@@ -74,11 +77,11 @@ export default function StatsSection() {
           {/* Headline */}
           <div className="lg:col-span-5">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
-              From Everyday Rides to <br className="hidden sm:block" />
-              <span className="text-gb-warning">Meaningful Journeys</span>
+              {copy.title} <br className="hidden sm:block" />
+              <span className="text-gb-warning">{copy.highlight}</span>
             </h2>
             <p className="mt-4 text-slate-400 text-sm sm:text-base leading-relaxed">
-              Empowering mobility across all 64 districts in Bangladesh with complete fare transparency, zero driver commission, and top-tier safety.
+              {copy.description}
             </p>
           </div>
 

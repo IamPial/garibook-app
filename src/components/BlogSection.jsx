@@ -1,7 +1,10 @@
 import React from 'react';
 import { ArrowRight, Clock, Calendar } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function BlogSection() {
+  const { t } = useLanguage();
+  const copy = t.sections.blog;
   const blogs = [
     {
       title: 'Top 10 Scenic Road Trips in Bangladesh You Must Experience in 2026',
@@ -36,13 +39,13 @@ export default function BlogSection() {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 sm:mb-16">
           <div>
             <span className="text-xs font-bold text-gb-primary uppercase tracking-widest bg-gb-primary-subtle px-3 py-1 rounded-full">
-              Travel Stories & Insights
+              {copy.badge}
             </span>
             <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
-              Beyond Destinations
+              {copy.title}
             </h2>
             <p className="mt-2 text-slate-600 text-sm sm:text-base">
-              Discover travel hacks, guides, and inspirations for your next intercity trip with Garibook.
+              {copy.description}
             </p>
           </div>
 
@@ -51,7 +54,7 @@ export default function BlogSection() {
               href="#blogs"
               className="inline-flex items-center gap-2 text-sm sm:text-base font-bold text-gb-primary hover:text-gb-primary-dark transition-colors group"
             >
-              <span>Show All Blogs</span>
+              <span>{copy.all}</span>
               <ArrowRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
             </a>
           </div>
@@ -105,7 +108,7 @@ export default function BlogSection() {
 
               <div className="px-6 pb-6 pt-2">
                 <span className="text-xs font-bold text-gb-primary inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
-                  <span>Read Article</span>
+                  <span>{copy.read}</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </span>
               </div>

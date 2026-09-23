@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Phone, ArrowUp, MessageSquare, X, MessageCircle, Clock, ShieldCheck } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function QuickSupport() {
+  const { lang } = useLanguage();
+  const bn = lang === 'bn';
   const [showBackToTop, setShowBackToTop] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -25,7 +28,7 @@ export default function QuickSupport() {
           <div className="flex items-center justify-between pb-3 border-b border-slate-100">
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-              <h4 className="font-bold text-slate-900 text-sm">Garibook 24/7 Help Desk</h4>
+              <h4 className="font-bold text-slate-900 text-sm">{bn ? 'গাড়িবুক ২৪/৭ হেল্প ডেস্ক' : 'Garibook 24/7 Help Desk'}</h4>
             </div>
             <button
               type="button"
@@ -37,7 +40,7 @@ export default function QuickSupport() {
           </div>
 
           <p className="text-xs text-slate-500 my-3 leading-relaxed">
-            Need urgent driver dispatch or airport schedule assistance? Reach out to our Dhaka support center immediately.
+            {bn ? 'জরুরি চালক বা এয়ারপোর্ট সহায়তা দরকার? আমাদের ঢাকা সাপোর্ট সেন্টারে যোগাযোগ করুন।' : 'Need urgent driver dispatch or airport schedule assistance? Reach out to our Dhaka support center immediately.'}
           </p>
 
           <div className="space-y-2">
@@ -49,7 +52,7 @@ export default function QuickSupport() {
                 <Phone className="w-4 h-4" />
               </div>
               <div className="text-left">
-                <p className="text-[10px] text-slate-400 uppercase font-semibold">Toll-Free Hotline</p>
+                <p className="text-[10px] text-slate-400 uppercase font-semibold">{bn ? 'টোল-ফ্রি হটলাইন' : 'Toll-Free Hotline'}</p>
                 <p className="text-xs font-bold">09678-112233</p>
               </div>
             </a>
@@ -64,7 +67,7 @@ export default function QuickSupport() {
                 <MessageCircle className="w-4 h-4" />
               </div>
               <div className="text-left">
-                <p className="text-[10px] text-slate-400 uppercase font-semibold">Instant WhatsApp</p>
+                <p className="text-[10px] text-slate-400 uppercase font-semibold">{bn ? 'তাৎক্ষণিক হোয়াটসঅ্যাপ' : 'Instant WhatsApp'}</p>
                 <p className="text-xs font-bold">+88 017 0000 0000</p>
               </div>
             </a>
@@ -72,10 +75,10 @@ export default function QuickSupport() {
 
           <div className="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-400">
             <span className="flex items-center gap-1">
-              <Clock className="w-3 h-3" /> Average response: 2 mins
+              <Clock className="w-3 h-3" /> {bn ? 'গড় উত্তর: ২ মিনিট' : 'Average response: 2 mins'}
             </span>
             <span className="flex items-center gap-1 text-emerald-600 font-semibold">
-              <ShieldCheck className="w-3 h-3" /> Verified Help
+              <ShieldCheck className="w-3 h-3" /> {bn ? 'যাচাইকৃত সহায়তা' : 'Verified Help'}
             </span>
           </div>
         </div>
@@ -88,13 +91,13 @@ export default function QuickSupport() {
           type="button"
           onClick={() => setIsDrawerOpen(!isDrawerOpen)}
           className="flex items-center gap-2.5 px-4 py-3 rounded-full bg-slate-900 text-white shadow-2xl hover:bg-gb-primary transition-all duration-200 group active:scale-95 cursor-pointer border border-slate-800"
-          title="24/7 Customer Assistance"
+          title={bn ? '২৪/৭ গ্রাহক সহায়তা' : '24/7 Customer Assistance'}
         >
           <div className="relative">
             <MessageSquare className="w-4 h-4 text-gb-warning" />
             <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-emerald-400 ring-2 ring-slate-900" />
           </div>
-          <span className="text-xs font-bold hidden sm:inline">24/7 Helpline</span>
+          <span className="text-xs font-bold hidden sm:inline">{bn ? '২৪/৭ হেল্পলাইন' : '24/7 Helpline'}</span>
         </button>
 
         {/* Back To Top Button */}

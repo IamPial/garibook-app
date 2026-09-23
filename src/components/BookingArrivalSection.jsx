@@ -1,7 +1,10 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function BookingArrivalSection() {
+  const { t } = useLanguage();
+  const copy = t.sections.arrival;
   return (
     <section className="py-20 sm:py-28 bg-slate-950 text-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -9,14 +12,13 @@ export default function BookingArrivalSection() {
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12 sm:mb-16">
           <div className="max-w-xl">
             <span className="text-xs font-bold text-gb-warning uppercase tracking-widest bg-white/5 px-3 py-1 rounded-full border border-white/10">
-              Complete Control
+              {copy.badge}
             </span>
             <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
-              From Booking to Arrival <br className="hidden sm:block" />
-              It’s All in Your Hands
+              {copy.title}
             </h2>
             <p className="mt-3 text-slate-400 text-sm sm:text-base">
-              Track live driver location, inspect car condition ratings, chat directly, and pay securely via cash, bKash, or card.
+              {copy.description}
             </p>
           </div>
 
@@ -27,7 +29,7 @@ export default function BookingArrivalSection() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-8 py-3.5 rounded-xl font-bold text-slate-900 bg-gb-warning hover:bg-gb-warning-hover transition-all duration-200 shadow-lg hover:shadow-gb-warning/20 active:scale-95"
             >
-              <span>Download App</span>
+              <span>{copy.download}</span>
               <ArrowRight className="w-5 h-5" />
             </a>
           </div>
@@ -44,8 +46,8 @@ export default function BookingArrivalSection() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-6">
               <div>
-                <span className="text-xs font-semibold text-gb-warning">Explore Freely</span>
-                <p className="text-lg font-bold text-white">Any road, any destination nationwide</p>
+                <span className="text-xs font-semibold text-gb-warning">{copy.explore}</span>
+                <p className="text-lg font-bold text-white">{copy.nationwide}</p>
               </div>
             </div>
           </div>
@@ -59,8 +61,8 @@ export default function BookingArrivalSection() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-6">
               <div>
-                <span className="text-xs font-semibold text-gb-warning">Total Flexibility</span>
-                <p className="text-lg font-bold text-white">Choose your preferred pace</p>
+                <span className="text-xs font-semibold text-gb-warning">{copy.flexibility}</span>
+                <p className="text-lg font-bold text-white">{copy.pace}</p>
               </div>
             </div>
           </div>
@@ -73,7 +75,7 @@ export default function BookingArrivalSection() {
               className="max-h-48 w-auto object-contain group-hover:scale-105 transition-transform duration-300"
             />
             <div className="absolute bottom-4 left-6">
-              <span className="text-xs font-bold text-emerald-400">Verified Safety Protocols</span>
+              <span className="text-xs font-bold text-emerald-400">{copy.safety}</span>
             </div>
           </div>
 
@@ -86,8 +88,8 @@ export default function BookingArrivalSection() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-6">
               <div>
-                <span className="text-xs font-semibold text-gb-warning">Clean & Inspected</span>
-                <p className="text-base font-bold text-white">Premium Vehicle Standards</p>
+                <span className="text-xs font-semibold text-gb-warning">{copy.clean}</span>
+                <p className="text-base font-bold text-white">{copy.standards}</p>
               </div>
             </div>
           </div>
@@ -101,8 +103,8 @@ export default function BookingArrivalSection() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-6">
               <div>
-                <span className="text-xs font-semibold text-gb-warning">Hassle-Free</span>
-                <p className="text-base font-bold text-white">Smooth, On-Time Dispatch</p>
+                <span className="text-xs font-semibold text-gb-warning">{copy.smooth}</span>
+                <p className="text-base font-bold text-white">{copy.dispatch}</p>
               </div>
             </div>
           </div>

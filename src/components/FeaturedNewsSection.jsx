@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, ExternalLink, Newspaper } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function FeaturedNewsSection() {
+  const { lang } = useLanguage();
+  const bn = lang === 'bn';
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const newsItems = [
@@ -54,13 +57,13 @@ export default function FeaturedNewsSection() {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10">
           <div>
             <span className="text-xs font-bold text-gb-primary uppercase tracking-widest bg-gb-primary-subtle px-3 py-1 rounded-full">
-              Press & Media
+              {bn ? 'প্রেস ও মিডিয়া' : 'Press & Media'}
             </span>
             <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-              We Featured by Top News Platforms
+              {bn ? 'শীর্ষ সংবাদমাধ্যমে আমাদের খবর' : 'We Featured by Top News Platforms'}
             </h2>
             <p className="mt-2 text-slate-600 text-sm">
-              Read what national media and travel editors are saying about our journey.
+              {bn ? 'জাতীয় মিডিয়া ও ভ্রমণ সম্পাদকরা আমাদের যাত্রা সম্পর্কে কী বলছেন তা পড়ুন।' : 'Read what national media and travel editors are saying about our journey.'}
             </p>
           </div>
 
@@ -124,7 +127,7 @@ export default function FeaturedNewsSection() {
               <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
                 <span>{item.date}</span>
                 <span className="font-semibold text-gb-primary group-hover:underline">
-                  Read article →
+                  {bn ? 'আর্টিকেল পড়ুন →' : 'Read article →'}
                 </span>
               </div>
             </a>

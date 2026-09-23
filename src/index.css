@@ -1,9 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 @import "tailwindcss";
 @config "../tailwind.config.js";
 
 @layer base {
   body {
-    @apply bg-white text-slate-800 font-sans;
+    @apply bg-[#ffffff] text-black font-sans;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', sans-serif; }
+
+  .hero-grid {
+    background-image: linear-gradient(rgba(0, 130, 127, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 130, 127, 0.06) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  .hero-orb { width: 28rem; height: 28rem; background: #d9f0e9; }
+  .hero-image { height: 22rem; }
+
+  @media (min-width: 640px) {
+    .hero-image { height: 31rem; }
   }
 }
 
@@ -14,16 +30,16 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #ffffff;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: #ffffff;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
+  background: #ffffff;
 }
 
 /* Garibook button styling */

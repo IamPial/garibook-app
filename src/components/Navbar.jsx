@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Globe, User, Phone, ArrowRight, Sparkles } from 'lucide-react';
+import { Menu, X, Globe, User, Phone, ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function Navbar() {
@@ -27,10 +27,10 @@ export default function Navbar() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'bg-white/95 backdrop-blur-md shadow-sm py-3 text-slate-800 border-b border-slate-100'
-            : 'bg-white/90 backdrop-blur-sm py-4 text-slate-800'
+            ? 'bg-white backdrop-blur-md shadow-[0_8px_30px_rgba(13,32,31,0.08)] py-3 text-slate-800 border-b border-[#dbe9e5]'
+            : 'bg-[#f8fbfa]/90 backdrop-blur-sm py-4 text-slate-800'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -38,19 +38,19 @@ export default function Navbar() {
             {/* Logo */}
             <a href="#" className="flex items-center gap-2 group">
               <img
-                src="/assets/images/gaibook-logo.svg"
+                src="/assets/images/garibook-logo.svg"
                 alt="Garibook Logo"
-                className="h-8 sm:h-10 w-auto transition-transform duration-200 group-hover:scale-105"
+                className="h-8 sm:h-9 w-auto transition-transform duration-200 group-hover:scale-105"
               />
             </a>
 
             {/* Desktop Navigation Links */}
-            <nav className="hidden lg:flex items-center space-x-7">
+            <nav className="hidden lg:flex items-center space-x-8">
               {navLinks.map((link) => (
                 <a
                   key={link.name}
                   href={link.href}
-                  className="text-sm font-semibold text-slate-700 hover:text-gb-primary transition-colors duration-150 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gb-primary hover:after:w-full after:transition-all after:duration-200"
+                  className="text-[13px] font-bold text-slate-600 hover:text-gb-primary transition-colors duration-150 relative py-1 after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-gb-primary hover:after:w-full after:transition-all after:duration-200"
                 >
                   {link.name}
                 </a>

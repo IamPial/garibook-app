@@ -1,23 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ArrowRight, ShieldCheck, Star, Users, MapPin, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import gsap from 'gsap';
 import { useLanguage } from '../context/LanguageContext';
+import heroImage from '../assets/freedom_section.webp';
 
 export default function HeroSection() {
   const { lang, t } = useLanguage();
   const heroRef = useRef(null);
   const headlineRef = useRef(null);
-  const subtitleRef = useRef(null);
-  const ctaRef = useRef(null);
-  const badgesRef = useRef(null);
+  const rightColRef = useRef(null);
 
-  // Rotating phrases for typewriter
+  // Exact rotating phrases from garibook.com
   const phrases = [
-    'City to City',
-    'Intercity Car Rental',
-    'Airport Transfer',
+    'Assurance of Effortless Travels',
+    'Luxury Tips with Comfort',
+    'Your Journey Starts Here...',
     'Hourly Car Rental',
-    'Freedom in Every Journey',
+    'Intercity Car Rental',
   ];
 
   const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
@@ -48,7 +47,7 @@ export default function HeroSection() {
     return () => clearTimeout(timer);
   }, [displayText, isDeleting, currentPhraseIndex]);
 
-  // GSAP Entrance Animation
+  // GSAP Entrance Animation (Animation #1)
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
@@ -56,31 +55,19 @@ export default function HeroSection() {
       tl.fromTo(
         heroRef.current,
         { opacity: 0 },
-        { opacity: 1, duration: 0.5 }
+        { opacity: 1, duration: 0.6 }
       )
         .fromTo(
           headlineRef.current,
-          { y: 25, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.7 },
-          '-=0.2'
-        )
-        .fromTo(
-          subtitleRef.current,
-          { y: 15, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.6 },
-          '-=0.4'
-        )
-        .fromTo(
-          ctaRef.current,
-          { y: 15, opacity: 0, scale: 0.98 },
-          { y: 0, opacity: 1, scale: 1, duration: 0.5 },
+          { y: 30, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8 },
           '-=0.3'
         )
         .fromTo(
-          badgesRef.current.children,
-          { y: 12, opacity: 0 },
-          { y: 0, opacity: 1, stagger: 0.08, duration: 0.4 },
-          '-=0.2'
+          rightColRef.current,
+          { y: 25, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.7 },
+          '-=0.5'
         );
     }, heroRef);
 
@@ -91,145 +78,41 @@ export default function HeroSection() {
     <section
       id="about"
       ref={heroRef}
-      className="relative pt-28 sm:pt-36 pb-20 sm:pb-28 bg-gradient-to-b from-emerald-50/50 via-white to-slate-50 overflow-hidden"
+      className="relative pt-32 sm:pt-40 pb-20 sm:pb-28 bg-[#f4faf8] overflow-hidden"
     >
-      {/* Decorative background grid and blurs */}
-      <div className="absolute inset-0 bg-[radial-gradient(#00827f_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.04] pointer-events-none" />
-      <div className="absolute top-16 right-10 w-96 h-96 bg-gb-primary/8 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 left-5 w-80 h-80 bg-amber-400/8 rounded-full blur-3xl pointer-events-none" />
-
+      <div className="hero-grid absolute inset-0 opacity-40" />
+      <div className="hero-orb absolute -right-32 top-12 rounded-full blur-3xl" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Left Column: Heading and Tagline */}
-          <div className="lg:col-span-7">
-            {/* Pill Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gb-primary-subtle text-gb-primary font-bold text-xs mb-6 border border-gb-primary/20 shadow-xs">
-              <span className="flex h-2 w-2 rounded-full bg-gb-primary animate-pulse" />
-              <span>{t.hero.badge}</span>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+          {/* Left Column: Big Typing Headline */}
+          <div className="lg:col-span-6" ref={headlineRef}>
+            <div className="flex items-center gap-3 mb-6">
+              <span className="h-px w-10 bg-gb-warning" />
+              <span className="text-xs font-extrabold uppercase tracking-[0.24em] text-gb-primary">Move freely</span>
             </div>
-
-            {/* Dynamic Typewriter Heading */}
-            <div ref={headlineRef} className="min-h-[105px] sm:min-h-[135px] flex items-center">
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.12]">
-                <span className="block text-slate-800">{t.hero.titlePrefix}</span>
-                <span className="text-gb-primary inline-flex items-center">
-                  {displayText}
-                  <span className="inline-block w-1.5 h-8 sm:h-12 bg-gb-warning ml-2 animate-pulse rounded-full" />
-                </span>
-              </h1>
-            </div>
-
-            {/* Subtitle */}
-            <p
-              ref={subtitleRef}
-              className="mt-4 text-base sm:text-lg text-slate-600 max-w-xl leading-relaxed"
-            >
-              {t.hero.subtitle}
+            <h1 className="text-[clamp(3rem,6vw,5.8rem)] font-black text-[#102c2a] tracking-[-0.06em] leading-[0.98]">
+              <span className="block">{displayText}<span className="inline-block w-1.5 h-12 sm:h-20 bg-gb-warning ml-2 align-[-0.08em] animate-pulse" /></span>
+              <span className="block mt-3 text-[#102c2a]">made simple.</span>
+            </h1>
+            <p className="mt-7 max-w-xl text-base sm:text-lg text-slate-600 leading-relaxed">
+              Choose your city, pick your car and enjoy the journey with Garibook’s best drivers.
             </p>
-
-            {/* CTAs */}
-            <div ref={ctaRef} className="mt-8 flex flex-wrap items-center gap-4">
-              <a
-                href="https://onelink.to/gbweb"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-center justify-center gap-3 px-7 py-3.5 rounded-xl font-bold text-slate-950 bg-gb-warning hover:bg-gb-warning-hover transition-all duration-200 shadow-md hover:shadow-lg active:scale-95"
-              >
-                <span>{t.hero.downloadApp}</span>
-                <ArrowRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
-              </a>
-
-              <a
-                href="#booking"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-bold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 transition-all duration-200 shadow-xs hover:border-slate-300 active:scale-95"
-              >
-                <span>{t.hero.bookRide}</span>
-              </a>
-            </div>
-
-            {/* Trust Badges */}
-            <div
-              ref={badgesRef}
-              className="mt-10 pt-6 border-t border-slate-200/80 grid grid-cols-3 gap-4 max-w-lg"
-            >
-              <div className="flex items-center gap-2.5">
-                <div className="p-2 rounded-xl bg-emerald-100 text-emerald-700">
-                  <ShieldCheck className="w-4 h-4" />
-                </div>
-                <div className="text-xs">
-                  <p className="font-bold text-slate-900">{t.hero.zeroCommission}</p>
-                  <p className="text-slate-500">{t.hero.zeroCommissionSub}</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2.5">
-                <div className="p-2 rounded-xl bg-amber-100 text-amber-700">
-                  <Star className="w-4 h-4" />
-                </div>
-                <div className="text-xs">
-                  <p className="font-bold text-slate-900">{t.hero.rating}</p>
-                  <p className="text-slate-500">{t.hero.ratingSub}</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-2.5">
-                <div className="p-2 rounded-xl bg-sky-100 text-sky-700">
-                  <MapPin className="w-4 h-4" />
-                </div>
-                <div className="text-xs">
-                  <p className="font-bold text-slate-900">{t.hero.districts}</p>
-                  <p className="text-slate-500">{t.hero.districtsSub}</p>
-                </div>
-              </div>
+            <div className="mt-8 flex flex-wrap gap-3 text-xs font-bold text-slate-600">
+              <span className="rounded-full border border-[#c9dfd8] bg-white/70 px-4 py-2">Fair fares</span>
+              <span className="rounded-full border border-[#c9dfd8] bg-white/70 px-4 py-2">Verified drivers</span>
+              <span className="rounded-full border border-[#c9dfd8] bg-white/70 px-4 py-2">64 districts</span>
             </div>
           </div>
 
-          {/* Right Column: Visual Showcase Card */}
-          <div className="lg:col-span-5 relative mt-6 lg:mt-0">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
-              {/* Main Card with Real Car illustration */}
-              <div className="relative bg-white/90 backdrop-blur-xl p-6 rounded-3xl shadow-xl border border-white/80 ring-1 ring-slate-900/5 hover:shadow-2xl transition-all duration-300">
-                <div className="flex items-center justify-between pb-4 border-b border-slate-100">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping" />
-                    <span className="text-xs font-bold text-slate-800">Live Driver Bidding</span>
-                  </div>
-                  <span className="text-xs px-3 py-1 rounded-full bg-gb-primary-subtle text-gb-primary font-bold">
-                    Dhaka ⇄ Chattogram
-                  </span>
-                </div>
-
-                <div className="py-6 flex justify-center items-center">
-                  <img
-                    src="/assets/images/cars/intercity_car_rental.svg"
-                    alt="Garibook Intercity Vehicle"
-                    className="h-32 sm:h-40 w-auto drop-shadow-md hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-
-                {/* Driver bidding snippet */}
-                <div className="bg-slate-50/90 rounded-2xl p-4 border border-slate-100 space-y-2.5">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-slate-500 font-medium">Recommended Fleet</span>
-                    <span className="font-bold text-slate-800">Sedan / Noah Microbus</span>
-                  </div>
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-slate-500 font-medium">Average Fare Range</span>
-                    <span className="font-black text-gb-primary text-base">৳3,800 - ৳4,800</span>
-                  </div>
-                  <div className="flex items-center justify-between text-[11px] text-slate-400 pt-2 border-t border-slate-200/60">
-                    <span className="font-semibold text-slate-600">⚡ 5 Bids Received in 3 mins</span>
-                    <span className="text-emerald-600 font-bold">0% Middleman markup</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating Pill Accent */}
-              <div className="absolute -bottom-4 -left-4 bg-slate-950 text-white px-4 py-2.5 rounded-2xl shadow-xl flex items-center gap-3 text-xs border border-slate-800 hidden sm:flex">
-                <Users className="w-4 h-4 text-gb-warning" />
-                <div>
-                  <p className="font-bold">5,000+ Verified Chauffeurs</p>
-                  <p className="text-slate-400 text-[10px]">Ready for nationwide pickup</p>
+          {/* Right Column: Reference Text & Download App Button */}
+          <div className="lg:col-span-6 flex justify-center lg:justify-end" ref={rightColRef}>
+            <div className="relative w-full max-w-lg">
+              <div className="absolute -inset-4 rounded-[2.5rem] border border-white/80 bg-white/30 rotate-3" />
+              <div className="relative overflow-hidden rounded-[2.25rem] border border-white/80 bg-white/50 shadow-[0_30px_80px_rgba(0,83,79,0.18)]">
+                <img src={heroImage} alt="A Garibook car ready for the road" className="hero-image w-full object-cover" />
+                <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between rounded-2xl bg-[#102c2a]/90 p-4 text-white backdrop-blur-md">
+                  <div><p className="text-[10px] uppercase tracking-[0.2em] text-[#9ed6c6]">Your next journey</p><p className="mt-1 text-sm font-bold">Begins with a better choice.</p></div>
+                  <ArrowRight className="h-5 w-5 text-gb-warning" />
                 </div>
               </div>
             </div>

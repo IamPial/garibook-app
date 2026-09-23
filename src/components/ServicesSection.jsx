@@ -313,24 +313,12 @@ export default function ServicesSection() {
                 </div>
               </div>
               <div className="lg:col-span-6">
-                <div className="bg-slate-900 rounded-2xl p-8 text-white shadow-xl flex flex-col justify-center items-center text-center space-y-6">
-                  <Cpu className="w-20 h-20 text-gb-primary animate-pulse" />
-                  <div>
-                    <h4 className="text-xl font-bold">Integrated Telematics Platform</h4>
-                    <p className="text-xs text-slate-400 mt-2 max-w-sm">
-                      Connect your OBD trackers and IoT sensors to monitor your entire vehicle fleet in real time across Bangladesh.
-                    </p>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4 w-full text-left">
-                    <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
-                      <p className="text-xs text-slate-400">Tracked Vehicles</p>
-                      <p className="text-lg font-bold text-emerald-400">1,250+ Active</p>
-                    </div>
-                    <div className="bg-slate-800/80 p-3 rounded-xl border border-slate-700">
-                      <p className="text-xs text-slate-400">Fleet Efficiency</p>
-                      <p className="text-lg font-bold text-amber-400">98.4% Up</p>
-                    </div>
-                  </div>
+                <div className="rounded-2xl overflow-hidden shadow-xl border border-white">
+                  <img
+                    src="/assets/images/vms/Frame_1000001473.png"
+                    alt="Garibook VMS"
+                    className="w-full h-80 sm:h-96 object-cover hover:scale-105 transition-transform duration-500"
+                  />
                 </div>
               </div>
             </div>

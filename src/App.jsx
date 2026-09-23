@@ -25,7 +25,7 @@ export default function App() {
         <Navbar />
 
         {/* Main Content Sections */}
-        <main className="flex-grow">
+        <main className="grow">
           {/* 1. Hero Section with GSAP dynamic typewriter headline */}
           <HeroSection />
 

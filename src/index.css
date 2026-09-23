@@ -1,0 +1,48 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@layer base {
+  body {
+    @apply bg-white text-slate-800 font-sans;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Garibook button styling */
+.btn-primary-gb {
+  @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold text-white bg-gb-primary hover:bg-gb-primary-dark transition-all duration-200 shadow-sm hover:shadow active:scale-[0.98];
+}
+
+.btn-warning-gb {
+  @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-semibold text-slate-900 bg-gb-warning hover:bg-gb-warning-hover transition-all duration-200 shadow-sm hover:shadow active:scale-[0.98];
+}
+
+/* Glassmorphism card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+/* Input styling helper */
+.gb-input {
+  @apply w-full px-4 py-3 bg-white border border-slate-200 rounded-lg text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-gb-primary/30 focus:border-gb-primary transition-all duration-150 text-sm;
+}

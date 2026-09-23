@@ -8,7 +8,7 @@ export const translations = {
       campaign: 'Campaign',
       blogs: 'Blogs',
       faq: 'FAQ',
-      login: 'Login / Sign Up',
+      login: 'Login',
       hotline: '24/7 Hotline',
     },
     hero: {
@@ -70,7 +70,7 @@ export const translations = {
       campaign: 'ক্যাম্পেইন',
       blogs: 'ব্লগ',
       faq: 'প্রশ্নোত্তর',
-      login: 'লগইন / সাইন আপ',
+      login: 'লগইন',
       hotline: '২৪/৭ হটলাইন',
     },
     hero: {

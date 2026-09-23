@@ -75,7 +75,7 @@ export default function Navbar() {
 
               {/* Login Button */}
               <a
-                href="#booking"
+                href="#"
                 className="flex items-center gap-2 px-5 py-2 text-sm font-bold text-white bg-gb-primary hover:bg-gb-primary-dark rounded-full shadow-sm hover:shadow transition-all duration-200 active:scale-95"
               >
                 <User className="w-4 h-4" />
@@ -86,13 +86,12 @@ export default function Navbar() {
             {/* Mobile Actions: Language + Hamburger */}
             <div className="flex lg:hidden items-center gap-2 sm:gap-3">
               <button
-                type="button"
-                onClick={toggleLanguage}
-                className="flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold text-gb-primary bg-gb-primary-subtle rounded-full border border-gb-primary/20"
-              >
-                <Globe className="w-3 h-3" />
-                <span>{lang === 'en' ? 'বাং' : 'EN'}</span>
-              </button>
+              href="#"
+              onClick={() => setMobileMenuOpen(false)}
+              className="w-full flex items-center text-sm justify-center gap-2 px-4 py-2 rounded-sm font-medium text-white bg-gb-primary hover:bg-gb-primary-dark shadow transition-all"
+            >
+              <span>{t.nav.login}</span>
+            </button>
 
               <button
                 type="button"
@@ -121,7 +120,7 @@ export default function Navbar() {
 
         {/* Drawer Panel */}
         <div
-          className={`fixed top-0 right-0 bottom-0 w-[300px] sm:w-[350px] bg-white shadow-2xl p-6 flex flex-col justify-between transition-transform duration-300 ease-out transform ${
+          className={`fixed top-0 right-0 bottom-0 w-75 sm:w-87.5 bg-white shadow-2xl p-6 flex flex-col justify-between transition-transform duration-300 ease-out transform ${
             mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
@@ -152,7 +151,6 @@ export default function Navbar() {
                   className="text-base font-semibold text-slate-800 hover:text-gb-primary transition-colors flex items-center justify-between py-2 px-2 rounded-xl hover:bg-slate-50"
                 >
                   <span>{link.name}</span>
-                  <ArrowRight className="w-4 h-4 text-slate-300" />
                 </a>
               ))}
             </div>
@@ -168,25 +166,9 @@ export default function Navbar() {
                 className="w-full flex items-center justify-center gap-2 py-3 text-sm font-bold text-gb-primary bg-gb-primary-subtle rounded-xl border border-gb-primary/20"
               >
                 <Globe className="w-4 h-4" />
-                <span>Switch to {lang === 'en' ? 'বাংলা (Bengali)' : 'English'}</span>
+                <span>{lang === 'en' ? 'বাংলা' : 'English'}</span>
               </button>
             </div>
-          </div>
-
-          {/* Drawer Footer */}
-          <div className="pt-6 border-t border-slate-100">
-            <div className="flex items-center gap-3 text-xs text-slate-500 mb-4">
-              <Phone className="w-4 h-4 text-gb-primary" />
-              <span>{t.nav.hotline}: +88 09 678 11 22 33</span>
-            </div>
-            <a
-              href="#booking"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-white bg-gb-primary hover:bg-gb-primary-dark shadow transition-all"
-            >
-              <User className="w-4 h-4" />
-              <span>{t.nav.login}</span>
-            </a>
           </div>
         </div>
       </div>

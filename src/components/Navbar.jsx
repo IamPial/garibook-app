@@ -6,6 +6,9 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { lang, toggleLanguage, t } = useLanguage();
+  const logoSrc = lang === 'bn'
+    ? '/assets/images/garibook-logo-bangla.png'
+    : '/assets/images/garibook-logo.svg';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -38,8 +41,8 @@ export default function Navbar() {
             {/* Logo */}
             <a href="#" className="flex items-center gap-2 group">
               <img
-                src="/assets/images/garibook-logo.svg"
-                alt="Garibook Logo"
+                src={logoSrc}
+                alt={lang === 'bn' ? 'গাড়িবুক লোগো' : 'Garibook Logo'}
                 className="h-8 sm:h-9 w-auto transition-transform duration-200 group-hover:scale-105"
               />
             </a>
@@ -126,8 +129,8 @@ export default function Navbar() {
             {/* Header */}
             <div className="flex items-center justify-between pb-5 border-b border-slate-100">
               <img
-                src="/assets/images/gaibook-logo.svg"
-                alt="Garibook"
+                src={logoSrc}
+                alt={lang === 'bn' ? 'গাড়িবুক' : 'Garibook'}
                 className="h-8 w-auto"
               />
               <button

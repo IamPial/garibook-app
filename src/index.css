@@ -5,10 +5,10 @@
 @layer base {
   body {
     @apply bg-[#ffffff] text-black font-sans;
-    font-family: 'DM Sans', sans-serif;
+    font-family: sans-serif;
   }
 
-  h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', sans-serif; }
+  h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; }
 
   .hero-grid {
     background-image: linear-gradient(rgba(14, 82, 255, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(14, 82, 255, 0.06) 1px, transparent 1px);

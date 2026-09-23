@@ -7,11 +7,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        'gb-primary': '#00827f',
-        'gb-primary-dark': '#006563',
-        'gb-primary-light': '#0a9c99',
-        'gb-primary-subtle': '#e6f3f3',
-        'gb-primary-bg': '#f0f9f9',
+        'gb-primary': '#0e52ff',
+        'gb-primary-dark': '#0a3dcc',
+        'gb-primary-light': '#3b75ff',
+        'gb-primary-subtle': '#eaf0ff',
+        'gb-primary-bg': '#f3f6ff',
         'gb-warning': '#f5a623',
         'gb-warning-hover': '#e69819',
         'gb-warning-light': '#fff8e6',
@@ -26,7 +26,7 @@ export default {
       },
       boxShadow: {
         'gb-card': '0 4px 20px -2px rgba(0, 0, 0, 0.06), 0 2px 6px -1px rgba(0, 0, 0, 0.04)',
-        'gb-hover': '0 12px 30px -4px rgba(0, 130, 127, 0.15), 0 4px 12px -2px rgba(0, 0, 0, 0.06)',
+        'gb-hover': '0 12px 30px -4px rgba(14, 82, 255, 0.18), 0 4px 12px -2px rgba(0, 0, 0, 0.06)',
         'gb-float': '0 20px 40px -10px rgba(0, 0, 0, 0.12)',
       },
       animation: {

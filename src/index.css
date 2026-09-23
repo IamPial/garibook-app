@@ -11,11 +11,11 @@
   h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', sans-serif; }
 
   .hero-grid {
-    background-image: linear-gradient(rgba(0, 130, 127, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 130, 127, 0.06) 1px, transparent 1px);
+    background-image: linear-gradient(rgba(14, 82, 255, 0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(14, 82, 255, 0.06) 1px, transparent 1px);
     background-size: 56px 56px;
   }
 
-  .hero-orb { width: 28rem; height: 28rem; background: #d9f0e9; }
+  .hero-orb { width: 28rem; height: 28rem; background: #dce6ff; }
   .hero-image { height: 22rem; }
 
   @media (min-width: 640px) {

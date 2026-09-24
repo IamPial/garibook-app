@@ -148,7 +148,6 @@ export default function BookingArrivalSection() {
               alt="Smooth Journey"
               className="w-full h-full object-cover"
             />
-           
           </div>
         </div>
       </div>

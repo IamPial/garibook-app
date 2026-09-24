@@ -112,7 +112,7 @@ export default function DriverSection() {
             <div className="lg:col-span-5 flex justify-center items-center">
               <div ref={phoneImageRef} className="relative group max-w-xs sm:max-w-sm">
                 <img
-                  src="/assets/images/app-screen/no_commission_app_screen.png"
+                  src="/assets/images/app-screen/app.png"
                   alt="Garibook Smart Driver App Screen"
                   className="w-full h-auto"
                 />

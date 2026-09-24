@@ -1,116 +1,127 @@
-import React from 'react';
-import { ArrowRight, Clock, Calendar } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function BlogSection() {
   const { t } = useLanguage();
   const copy = t.sections.blog;
+
+  // Scroll Animation State
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  // Both Scroll In & Scroll Out Intersection Observer Logic
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.15 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
   const blogs = [
     {
-      title: 'Top 10 Scenic Road Trips in Bangladesh You Must Experience in 2026',
-      desc: 'From the rolling tea hills of Sreemangal to the Marine Drive of Cox’s Bazar, here are the most breathtaking routes to book this season.',
-      category: 'Travel Guide',
-      readTime: '5 min read',
-      date: 'Sept 2026',
-      image: '/assets/images/services/Group_Tour_Webp.webp',
+      title: 'রাইড শেয়ারিংয়ে বদলে যাচ্ছে বাংলাদেশের শহুরে পরিবহন ব্যবস্থা',
+      desc: 'রাইড শেয়ারিংয়ে বদলে যাচ্ছে বাংলাদেশের শহুরে পরিবহন ব্যবস্থা',
+      date: 'September 15, 2026',
+      image: '/assets/images/destination/img1.webp',
     },
     {
-      title: 'How Garibook’s Driver Bidding Model Saves You Up To 30% on Intercity Travel',
-      desc: 'Understand how dynamic market pricing empowers you to negotiate directly with drivers without traditional fleet rental markups.',
-      category: 'Smart Travel',
-      readTime: '4 min read',
-      date: 'Sept 2026',
-      image: '/assets/images/services/explore.jpeg',
+      title: 'সিলেটের দর্শনীয় স্থান সমূহ, খাবার ও থাকার ব্যবস্থা',
+      desc: 'সিলেটের দর্শনীয় স্থান',
+      date: 'September 20, 2026',
+      image: '/assets/images/destination/img2.webp',
     },
     {
-      title: 'Airport Transfers Made Simple: Tips for Smooth Arrivals at DAC & CGP',
-      desc: 'Never stress over international flight delays again. Learn how flight tracking and verified airport chauffeurs make all the difference.',
-      category: 'Airport Hacks',
-      readTime: '3 min read',
-      date: 'Aug 2026',
-      image: '/assets/images/services/Airport_Rental_Webp.webp',
+      title: 'নওগাঁর দর্শনীয় স্থান সমূহ, খাবার ও থাকার ব্যবস্থা',
+      desc: 'নওগাঁর দর্শনীয় স্থান সমূহ',
+      date: 'September 20, 2026',
+      image: '/assets/images/destination/img3.webp',
     },
   ];
 
   return (
-    <section id="blogs" className="py-20 sm:py-28 bg-white relative">
+    <section 
+      ref={sectionRef} 
+      id="blogs" 
+      className="py-10 sm:py-16 bg-white relative overflow-hidden select-none"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
         {/* Header Row */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 sm:mb-16">
+        <div 
+          className={`flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-12 transition-all duration-700 ease-in-out transform ${
+            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10'
+          }`}
+        >
           <div>
-            <span className="text-xs font-bold text-gb-primary uppercase tracking-widest bg-gb-primary-subtle px-3 py-1 rounded-full">
-              {copy.badge}
-            </span>
-            <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
-              {copy.title}
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-black tracking-tight">
+              {copy?.title || 'Beyond Destinations'}
             </h2>
-            <p className="mt-2 text-slate-600 text-sm sm:text-base">
-              {copy.description}
+            <p className="mt-1 sm:mt-2 text-slate-500 text-xs sm:text-base font-medium">
+              {copy?.description || 'Discover travel hacks, guides, and inspirations for your next intercity trip with Garibook.'}
             </p>
           </div>
 
-          <div>
+          <div className="shrink-0 self-start sm:self-auto">
             <a
-              href="#blogs"
-              className="inline-flex items-center gap-2 text-sm sm:text-base font-bold text-gb-primary hover:text-gb-primary-dark transition-colors group"
+              href="#"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-base font-bold text-blue-600 hover:text-blue-700 transition-colors group"
             >
-              <span>{copy.all}</span>
-              <ArrowRight className="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" />
+              <span className="font-bold text-sm">{copy?.all || 'Show All Blogs'}</span>
+              <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform duration-200 group-hover:translate-x-1" />
             </a>
           </div>
         </div>
 
-        {/* Blog Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {blogs.map((blog) => (
+       
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-8">
+          {blogs.map((blog, index) => (
             <article
-              key={blog.title}
-              className="group bg-white rounded-3xl border border-slate-200 overflow-hidden shadow-gb-card hover:shadow-gb-hover hover:border-gb-primary/30 transition-all duration-300 flex flex-col justify-between"
+              key={index}
+              style={{
+                transitionDelay: isVisible ? `${(index + 1) * 150}ms` : '0ms',
+              }}
+              className={`group cursor-pointer transition-all duration-700 ease-in-out transform ${
+                isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-12 scale-95'
+              }`}
             >
-              <div>
-                {/* Image */}
-                <div className="h-52 overflow-hidden relative">
-                  <img
-                    src={blog.image}
-                    alt={blog.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute top-4 left-4">
-                    <span className="text-xs font-bold px-3 py-1 rounded-full bg-white/95 text-gb-primary backdrop-blur-sm shadow-sm">
-                      {blog.category}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Details */}
-                <div className="p-6">
-                  <div className="flex items-center gap-4 text-xs text-slate-400 mb-3">
-                    <span className="flex items-center gap-1">
-                      <Calendar className="w-3.5 h-3.5" />
-                      <span>{blog.date}</span>
-                    </span>
-                    <span>•</span>
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-3.5 h-3.5" />
-                      <span>{blog.readTime}</span>
-                    </span>
-                  </div>
-
-                  <h3 className="text-lg font-bold text-slate-900 group-hover:text-gb-primary transition-colors leading-snug line-clamp-2">
-                    {blog.title}
-                  </h3>
-
-                  <p className="mt-3 text-xs sm:text-sm text-slate-600 line-clamp-3 leading-relaxed">
-                    {blog.desc}
-                  </p>
-                </div>
+              {/* Image Container */}
+              <div className="w-full h-32 sm:h-60 rounded-xl  overflow-hidden mb-2 sm:mb-4 bg-slate-100">
+                <img
+                  src={blog.image}
+                  alt={blog.title}
+                  className="w-full h-full object-cover"
+                />
               </div>
 
-              <div className="px-6 pb-6 pt-2">
-                <span className="text-xs font-bold text-gb-primary inline-flex items-center gap-1.5 group-hover:gap-2.5 transition-all">
-                  <span>{copy.read}</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </span>
+              {/* Blog Content */}
+              <div>
+                {/* Date */}
+                <p className="text-[10px] sm:text-xs font-medium text-slate-400 mb-1">
+                  {blog.date}
+                </p>
+
+                {/* Title */}
+                <h3 className="text-xs sm:text-lg font-extrabold text-slate-900 transition-colors leading-snug line-clamp-2">
+                  {blog.title}
+                </h3>
+
+                {/* Subtitle / Short Desc */}
+                <p className="mt-0.5 sm:mt-1 text-[10px] sm:text-sm font-normal text-slate-400 line-clamp-1">
+                  {blog.desc}
+                </p>
               </div>
             </article>
           ))}

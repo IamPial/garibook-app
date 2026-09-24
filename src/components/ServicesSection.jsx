@@ -188,38 +188,21 @@ export default function ServicesSection() {
 
         {/* TAB 3: GARIBOOK CLUB */}
         {activeTab === 'club' && (
-          <div className="bg-slate-50 rounded-3xl p-6 sm:p-10 lg:p-14 border border-slate-200">
+          <div className="bg-slate-50">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               <div className="lg:col-span-6 space-y-5">
-                <span className="text-xs font-bold text-amber-600 uppercase tracking-widest bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
-                  Car Owner Community
-                </span>
-                <h3 className="text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
-                  Turn Your Car into Earnings <br /> With Garibook Club
+                <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 leading-tight">
+                  Turn Your Car into Earnings With Garibook Club
                 </h3>
                 <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
                   Garibook Club is more than just a community. Join a vibrant network of vehicle owners and enthusiasts, all fueled by the same passion: the open road and making reliable monthly passive income doing what they love.
                 </p>
-                <div className="space-y-3 pt-2">
-                  <div className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
-                    <span className="text-sm text-slate-700">Guaranteed monthly returns with flexible leasing</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
-                    <span className="text-sm text-slate-700">Comprehensive insurance and 24/7 telematics protection</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
-                    <span className="text-sm text-slate-700">Exclusive maintenance perks, discounts, and member meetups</span>
-                  </div>
-                </div>
                 <div className="pt-4">
                   <a
                     href="#smart-driver"
-                    className="inline-flex items-center gap-3 px-7 py-3.5 rounded-xl font-bold text-slate-950 bg-gb-warning hover:bg-gb-warning-hover shadow transition-all duration-200"
+                    className="inline-flex items-center gap-3 px-7 py-3.5 rounded-xl font-bold text-white bg-gb-primary hover:scale-105 shadow transition-all duration-200"
                   >
-                    <span>Join Garibook Club</span>
+                    <span>Learn More</span>
                     <ArrowRight className="w-4 h-4" />
                   </a>
                 </div>

@@ -73,23 +73,15 @@ export default function ServicesSection() {
   }, [activeTab]);
 
   return (
-    <section id="services" ref={sectionRef} className="py-20 sm:py-28 bg-white relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="services" ref={sectionRef} className="py-10 sm:py-14 bg-white relative">
+      <div className="max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-          <span className="text-xs font-bold text-gb-primary uppercase tracking-widest bg-gb-primary-subtle px-3 py-1 rounded-full">
-            {copy.badge}
-          </span>
-          <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
+        <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight mb-8">
             {copy.title}
           </h2>
-          <p className="mt-4 text-slate-600 text-sm sm:text-base">
-            {copy.description}
-          </p>
-        </div>
 
         {/* Tab Buttons */}
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12">
+        <div className="flex flex-wrap  gap-2 sm:gap-3 mb-12">
           {tabs.map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
@@ -98,13 +90,13 @@ export default function ServicesSection() {
                 key={tab.id}
                 type="button"
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2.5 px-5 py-3 rounded-full text-sm font-semibold transition-all duration-200 ${
+                className={`flex items-center gap-2.5 px-5 py-3 rounded-lg text-sm font-semibold transition-all duration-200 ${
                   isActive
-                    ? 'bg-gb-primary text-white shadow-md shadow-gb-primary/20 scale-105'
+                    ? 'bg-gb-primary text-white shadow-md  scale-105'
                     : 'bg-slate-100 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900'
                 }`}
               >
-                <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-slate-500'}`} />
+                
                 <span>{tab.label}</span>
               </button>
             );

@@ -5,10 +5,10 @@ import { useLanguage } from '../context/LanguageContext';
 import BookingFields, { BookingModeTabs } from './booking/BookingFields';
 
 const initialState = {
-  selectedCar: 'sedan',
-  pickupLocation: 'Dhaka (Gulshan)',
-  dropoffLocation: 'Chattogram (GEC Circle)',
-  pickupAirport: 'DAC',
+  selectedCar: '',
+  pickupLocation: '',
+  dropoffLocation: '',
+  pickupAirport: '',
   dateTime: '',
   returnDateTime: '',
   hourlyDuration: '4',
@@ -24,8 +24,11 @@ export default function BookingWidget() {
   const [formError, setFormError] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  const selectedVehicle = carOptions.find((car) => car.id === form.selectedCar) || carOptions[0];
-  const fare = getFare(selectedVehicle.basePrice, form.tripType, form.hourlyDuration);
+  // শুরুতে কোনো গাড়ি সিলেক্ট থাকবে না (placeholder: "Select Car Type")
+  const selectedVehicle = carOptions.find((car) => car.id === form.selectedCar) || null;
+  const fare = selectedVehicle
+    ? getFare(selectedVehicle.basePrice, form.tripType, form.hourlyDuration)
+    : null;
   const update = (key, value) => setForm((current) => ({ ...current, [key]: value }));
   const toggleMenu = (name) => setOpenMenu((current) => (current === name ? null : name));
   const closeMenu = () => setOpenMenu(null);
@@ -80,19 +83,23 @@ export default function BookingWidget() {
   };
 
   return (
-    <section id="booking" className="relative -mt-10 sm:-mt-14 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="bg-white rounded-3xl shadow-gb-float border border-slate-200/90 overflow-hidden">
+    // z-30: ড্রপডাউন যেন নিচের সেকশনের ওপরে দেখা যায়
+    <section id="booking" className="relative -mt-10 sm:-mt-14 z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* ট্যাব + কার্ড একসাথে এক আকৃতি, তাই drop-shadow দুটোর বাইরের সীমানা ধরে বড় নরম ছায়া ফেলে */}
+      <div className="drop-shadow-[0_8px_40px_rgba(15,23,42,0.2)]">
         <BookingModeTabs activeTab={activeTab} onChange={changeMode} t={t.booking} />
-        <BookingFields
-          mode={activeTab}
-          form={fieldState}
-          actions={actions}
-          data={{ cars: carOptions, airports, locations: popularLocations }}
-          t={t.booking}
-          fare={fare}
-          error={formError}
-          submitted={submitted}
-        />
+        <div className="bg-white rounded-2xl rounded-tl-none">
+          <BookingFields
+            mode={activeTab}
+            form={fieldState}
+            actions={actions}
+            data={{ cars: carOptions, airports, locations: popularLocations }}
+            t={t.booking}
+            fare={fare}
+            error={formError}
+            submitted={submitted}
+          />
+        </div>
       </div>
     </section>
   );
@@ -109,9 +116,11 @@ function validateBooking(activeTab, form) {
   if (activeTab === 'car-rental') {
     if (!form.pickupLocation.trim()) return 'Please enter a pickup location';
     if (form.tripType !== 'hourly' && !form.dropoffLocation.trim()) return 'Please enter a drop-off location';
+    if (!form.dateTime) return 'Please select pickup date & time';
     return '';
   }
   if (!form.pickupAirport) return 'Please select an airport';
   if (!form.dropoffLocation.trim()) return form.airportTripType === 'from-airport' ? 'Please enter your destination' : 'Please enter your pickup address';
+  if (!form.dateTime) return 'Please select flight date & time';
   return '';
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import gsap from 'gsap';
 import { useLanguage } from '../context/LanguageContext';
-import heroImage from '../assets/freedom_section.webp';
+
 
 export default function HeroSection() {
   const { t } = useLanguage();

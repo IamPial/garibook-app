@@ -139,7 +139,7 @@ export default function FeaturedNewsSection() {
         
         {/* Header & Controls */}
         <div ref={headerRef} className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 mb-8 sm:mb-14">
-          <h2 className="text-2xl sm:text-4xl lg:text-[42px] font-extrabold text-slate-900 tracking-tight leading-tight">
+          <h2 className="text-2xl sm:text-4xl lg:text-[42px] font-bold text-slate-900 tracking-tight leading-tight">
             {bn ? 'মিডিয়া ফিচারস' : 'We Featured by Top news\nPlatforms'}
           </h2>
 
@@ -148,7 +148,7 @@ export default function FeaturedNewsSection() {
             <button
               type="button"
               onClick={handlePrev}
-              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-800 transition-all duration-200 active:scale-95 cursor-pointer"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-100 hover:bg-gb-dark flex items-center justify-center text-slate-800 hover:text-white transition-all duration-200 active:scale-95 cursor-pointer"
               aria-label="Previous News"
             >
               <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -156,7 +156,7 @@ export default function FeaturedNewsSection() {
             <button
               type="button"
               onClick={handleNext}
-              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-800 transition-all duration-200 active:scale-95 cursor-pointer"
+              className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-slate-100 hover:bg-gb-dark flex items-center justify-center text-slate-800 hover:text-white transition-all duration-200 active:scale-95 cursor-pointer"
               aria-label="Next News"
             >
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />

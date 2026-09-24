@@ -24,7 +24,7 @@ export default function BookingWidget() {
   const [formError, setFormError] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  // শুরুতে কোনো গাড়ি সিলেক্ট থাকবে না (placeholder: "Select Car Type")
+//for empty state 
   const selectedVehicle = carOptions.find((car) => car.id === form.selectedCar) || null;
   const fare = selectedVehicle
     ? getFare(selectedVehicle.basePrice, form.tripType, form.hourlyDuration)
@@ -83,9 +83,9 @@ export default function BookingWidget() {
   };
 
   return (
-    // z-30: ড্রপডাউন যেন নিচের সেকশনের ওপরে দেখা যায়
+
     <section id="booking" className="relative -mt-10 sm:-mt-14 z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      {/* ট্যাব + কার্ড একসাথে এক আকৃতি, তাই drop-shadow দুটোর বাইরের সীমানা ধরে বড় নরম ছায়া ফেলে */}
+
       <div className="drop-shadow-[0_8px_40px_rgba(15,23,42,0.2)]">
         <BookingModeTabs activeTab={activeTab} onChange={changeMode} t={t.booking} />
         <div className="bg-white rounded-2xl rounded-tl-none">

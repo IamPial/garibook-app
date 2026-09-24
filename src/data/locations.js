@@ -44,22 +44,22 @@ export const airports = [
 ];
 
 export const popularLocations = [
-  { city: 'Dhaka', area: 'Gulshan / Banani / Niketon', type: 'Metro Hub' },
-  { city: 'Dhaka', area: 'Uttara / Airport Road', type: 'Transit Hub' },
-  { city: 'Dhaka', area: 'Dhanmondi / Mohammadpur', type: 'Residential Hub' },
-  { city: 'Dhaka', area: 'Motijheel / Old Dhaka', type: 'Commercial Hub' },
-  { city: 'Chattogram', area: 'GEC Circle / Agrabad', type: 'Port Commercial' },
-  { city: 'Chattogram', area: 'Patiya / Hathazari', type: 'Suburban' },
-  { city: 'Sylhet', area: 'Zindabazar / Amborkhana', type: 'Downtown' },
-  { city: 'Sylhet', area: 'Sreemangal Tea Resort Zone', type: 'Tourist Spot' },
-  { city: "Cox's Bazar", area: 'Kolatoli Beach / Marine Drive', type: 'Beach Resort' },
-  { city: 'Bandarban', area: 'Nilgiri / Chimbuk Hills', type: 'Hill Tract' },
-  { city: 'Rangamati', area: 'Kaptai Lake Boat Ghat', type: 'Lake District' },
-  { city: 'Rajshahi', area: 'Shaheb Bazar / Zero Point', type: 'Divisional City' },
-  { city: 'Khulna', area: 'Shibbari More / Sonadanga', type: 'Divisional City' },
-  { city: 'Gazipur', area: 'Chowrasta / Bhawal National Park', type: 'Industrial & Green' },
-  { city: 'Cumilla', area: 'Kandirpar / Kotbari Archeological Area', type: 'Historic Hub' },
-  { city: 'Barishal', area: 'Nathullabad Bus Terminal & Launch Ghat', type: 'River Port' },
+  { city: 'Dhaka', area: 'Gulshan'},
+  { city: 'Dhaka', area: 'Uttara'},
+  { city: 'Dhaka', area: 'Dhanmondi'},
+  { city: 'Dhaka', area: 'Motijheel'},
+  { city: 'Chattogram', area: 'GEC Circle'},
+  { city: 'Chattogram', area: 'Patiya '},
+  { city: 'Sylhet', area: 'Zindabazar'},
+  { city: 'Sylhet', area: 'Sreemangal Tea Resort Zone'},
+  { city: "Cox's Bazar", area: 'Marine Drive'},
+  { city: 'Bandarban', area: 'Nilgiri'},
+  { city: 'Rangamati', area: 'Kaptai Lake Boat Ghat'},
+  { city: 'Rajshahi', area: 'Zero Point'},
+  { city: 'Khulna', area: 'Shibbari More'},
+  { city: 'Gazipur', area: 'Chowrasta'},
+  { city: 'Cumilla', area: 'Kandirpar'},
+  { city: 'Barishal', area: 'Nathullabad Bus Terminal & Launch Ghat'},
 ];
 
 export const mockDriverBids = [

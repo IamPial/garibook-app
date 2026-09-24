@@ -22,18 +22,13 @@ export default function StatsSection() {
 
   const words = `${copy.title} ${copy.highlight}`.split(' ');
 
-  // useLayoutEffect: প্রথম paint এর আগেই লেখা লুকিয়ে ফেলে, তাই একবার ঝলকে পুরো হেডলাইন দেখা যায় না
+ 
   useLayoutEffect(() => {
     const format = (i, v) => `${Math.floor(v).toLocaleString()}${stats[i].suffix}`;
 
-    // যাদের "reduce motion" চালু, তাদের সরাসরি চূড়ান্ত সংখ্যা দেখাই
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      countRefs.current.forEach((el, i) => el && (el.textContent = format(i, stats[i].target)));
-      return undefined;
-    }
-
     const ctx = gsap.context(() => {
-      // 1) হেডলাইন: শব্দ ধরে ধরে নিচ থেকে উঠে আসে
+      // for heading
+      // toggleActions: ঢুকলে restart, স্ক্রিনের বাইরে গেলে reset -> আবার এলে নতুন করে চলে
       gsap.fromTo(
         '.hl-word',
         { y: 60, opacity: 0 },
@@ -44,13 +39,25 @@ export default function StatsSection() {
           delay: 0.3,
           ease: 'power3.out',
           stagger: 0.1,
-          scrollTrigger: { trigger: headingRef.current, start: 'top 80%', once: true },
+          scrollTrigger: {
+            trigger: headingRef.current,
+            start: 'top 80%',
+            toggleActions: 'restart reset restart reset',
+          },
         }
       );
 
-      // 2) স্ট্যাটস: এক টাইমলাইনে reveal + কাউন্টার একসাথে চলে
+      //for counting and also reset the animation when scrolling
+      const zeroCounters = () =>
+        countRefs.current.forEach((el, i) => { if (el) el.textContent = format(i, 0); });
+
       const tl = gsap.timeline({
-        scrollTrigger: { trigger: statsRef.current, start: 'top 92%', once: true },
+        onStart: zeroCounters,
+        scrollTrigger: {
+          trigger: statsRef.current,
+          start: 'top 92%',
+          toggleActions: 'restart reset restart reset',
+        },
       });
       tl.fromTo(
         '.stat-item',
@@ -115,7 +122,7 @@ export default function StatsSection() {
         </div>
       </div>
 
-      {/* বিল্ডিং ফ্রেম: বাম দিকে অনবরত সরে (loop), গাড়িটা ডানদিকে চলছে এমন মনে হয় */}
+     {/* looping the building */}
       <style>{`
         @keyframes gb-skyline-scroll { to { transform: translateX(calc(var(--tile) * -1)); } }
         .gb-skyline-track { animation: gb-skyline-scroll 25s linear infinite; will-change: transform; }
@@ -125,14 +132,14 @@ export default function StatsSection() {
         aria-hidden="true"
         className="absolute bottom-0 left-0 w-full h-15 sm:h-19.5 overflow-hidden pointer-events-none [--tile:1477px] sm:[--tile:1920px]"
       >
-        {/* প্রস্থ = স্ক্রিন + ১টা পুরো ছবি; ছবির প্রস্থ (--tile) পরিমাণ সরলেই ঠিক আগের অবস্থানে ফিরে আসে */}
+       
         <div
           className="gb-skyline-track h-full bg-[url('/assets/images/stats/Building_frame.png')] bg-repeat-x bg-bottom-left bg-size-[auto_60px] sm:bg-size-[auto_78px]"
           style={{ width: 'calc(100% + var(--tile))' }}
         />
       </div>
 
-    
+      {/* moving car */}
       <img
         src="/assets/images/stats/Moveable_Car.gif"
         alt=""

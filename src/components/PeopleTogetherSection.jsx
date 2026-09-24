@@ -77,7 +77,7 @@ export default function PeopleTogetherSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div ref={headerRef} className="max-w-2xl mb-12 sm:mb-16">
-          <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gb-dark leading-tight">
+          <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-gb-dark leading-tight">
             {copy.title}
           </h2>
         </div>

@@ -94,7 +94,7 @@ export default function ServicesSection() {
     <section id="services" ref={sectionRef} className="py-10 sm:py-14 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight mb-8">
+        <h2 className="mt-3 text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight mb-8">
           {copy.title}
         </h2>
 

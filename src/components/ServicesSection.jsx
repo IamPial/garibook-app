@@ -74,7 +74,7 @@ export default function ServicesSection() {
 
   return (
     <section id="services" ref={sectionRef} className="py-10 sm:py-14 bg-white relative">
-      <div className="max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight mb-8">
             {copy.title}
@@ -93,10 +93,9 @@ export default function ServicesSection() {
                 className={`flex items-center gap-2.5 px-5 py-3 rounded-lg text-sm font-semibold transition-all duration-200 ${
                   isActive
                     ? 'bg-gb-primary text-white shadow-md  scale-105'
-                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200/80 hover:text-slate-900'
+                    : 'bg-gray-300 text-black '
                 }`}
-              >
-                
+              >  
                 <span>{tab.label}</span>
               </button>
             );
@@ -107,7 +106,7 @@ export default function ServicesSection() {
         {activeTab === 'rides' && (
           <div>
             <div className="text-left mb-8">
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900">
+              <h3 className="text-2xl sm:text-3xl font-bold text-slate-900">
                 {copy.platform}
               </h3>
               <p className="text-sm text-slate-500 mt-1">
@@ -122,44 +121,30 @@ export default function ServicesSection() {
               {rideServices.map((service, idx) => (
                 <div
                   key={service.title}
-                  className="group relative bg-white rounded-2xl p-6 border border-slate-200 shadow-gb-card hover:shadow-gb-hover hover:border-gb-primary/40 transition-all duration-300 flex flex-col justify-between"
+                  className="group relative bg-white rounded-2xl p-6 overflow-hidden hover:bg-gb-primary transition-colors duration-300 flex flex-col justify-between"
                 >
                   <div>
                     {/* Car Image Illustration */}
-                    <div className="h-32 flex items-center justify-center bg-slate-50 rounded-xl p-4 mb-5 group-hover:bg-emerald-50/50 transition-colors">
+                    <div className="relative h-32 -mx-6 mb-5 flex items-center">
+                   
+                      <span
+                        aria-hidden="true"
+                        className="absolute left-0 top-1/2 h-20 w-0 -translate-y-1/2 rounded-r-xl bg-white transition-all duration-700 group-hover:w-24 ease-in-out"
+                      />
+                    
                       <img
                         src={service.image}
                         alt={service.title}
-                        className="max-h-24 w-auto object-contain transition-transform duration-300 group-hover:scale-110 drop-shadow-sm"
+                        className="relative ml-6 transition-transform duration-700 group-hover:translate-x-10"
                       />
                     </div>
 
-                    <h4 className="text-lg font-bold text-slate-900 group-hover:text-gb-primary transition-colors">
+                    <h4 className="text-lg font-bold text-slate-900 group-hover:text-white transition-colors duration-300">
                       {service.title}
                     </h4>
-                    <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed">
+                    <p className="mt-2 text-xs sm:text-sm text-slate-600 group-hover:text-white leading-relaxed transition-colors duration-300">
                       {service.desc}
                     </p>
-
-                    {/* Features list */}
-                    <ul className="mt-4 space-y-2 border-t border-slate-100 pt-4">
-                      {service.features.map((feat) => (
-                        <li key={feat} className="flex items-center gap-2 text-xs text-slate-500">
-                          <CheckCircle2 className="w-3.5 h-3.5 text-gb-primary shrink-0" />
-                          <span>{feat}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="mt-6 pt-2">
-                    <a
-                      href="#booking"
-                      className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-xs font-bold text-gb-primary bg-gb-primary-subtle group-hover:bg-gb-primary group-hover:text-white transition-all duration-200"
-                    >
-                      <span>{copy.book}</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </a>
                   </div>
                 </div>
               ))}

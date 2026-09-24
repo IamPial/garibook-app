@@ -11,7 +11,6 @@ import BookingArrivalSection from './components/BookingArrivalSection';
 import DriverSection from './components/DriverSection';
 import FeaturedNewsSection from './components/FeaturedNewsSection';
 import PassengerSpeakSection from './components/PassengerSpeakSection';
-import FaqSection from './components/FaqSection';
 import BlogSection from './components/BlogSection';
 import DownloadAppSection from './components/DownloadAppSection';
 import Footer from './components/Footer';
@@ -26,38 +25,17 @@ export default function App() {
 
         {/* Main Content Sections */}
         <main className="grow">
-          {/* 1. Hero Section with GSAP dynamic typewriter headline */}
+         
           <HeroSection />
-
-          {/* 2. Interactive Booking Console (Car Rental & Airport Rental tabs) */}
           <BookingWidget />
-
-          {/* 3. Stats Counter Section with GSAP ScrollTrigger number counting */}
           <StatsSection />
-
-          {/* 4. Our Services Section (Rides, Business, Club, VMS tabs) */}
           <ServicesSection />
-
-          {/* 5. Freedom in Every Journey (Dark Luxury Section) */}
           <FreedomSection />
-
-          {/* 6. More Than Miles — We Bring People Together */}
           <PeopleTogetherSection />
-
-          {/* 7. From Booking to Arrival It's All in Your Hands */}
           <BookingArrivalSection />
-
-          {/* 8. Be a Smart Driver (0% Commission Yellow Banner) */}
           <DriverSection />
-
-          {/* 9. Top Newsroom Media Coverage Slider */}
           <FeaturedNewsSection />
-
-          {/* 10. Passenger Speak Reviews Carousel */}
           <PassengerSpeakSection />
-
-          {/* 11. Frequently Asked Questions Accordion */}
-          <FaqSection />
 
           {/* 12. Beyond Destinations Blog Posts */}
           <BlogSection />

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Car, Building2, Users, Cpu, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Car, Building2, Users, Cpu } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useLanguage } from '../context/LanguageContext';
@@ -12,6 +12,7 @@ export default function ServicesSection() {
   const [activeTab, setActiveTab] = useState('rides');
   const sectionRef = useRef(null);
   const cardsRef = useRef(null);
+  const tabContentRef = useRef(null);
 
   const tabs = [
     { id: 'rides', label: copy.rides, icon: Car },
@@ -47,13 +48,13 @@ export default function ServicesSection() {
     },
   ];
 
-  // GSAP animation for cards reveal (Animation #3)
+  // GSAP animation on scroll & tab changes
   useEffect(() => {
-    if (activeTab === 'rides' && cardsRef.current) {
-      const ctx = gsap.context(() => {
+    const ctx = gsap.context(() => {
+      if (activeTab === 'rides' && cardsRef.current) {
         gsap.fromTo(
           cardsRef.current.children,
-          { y: 35, opacity: 0 },
+          { y: 50, opacity: 0 },
           {
             y: 0,
             opacity: 1,
@@ -63,13 +64,30 @@ export default function ServicesSection() {
             scrollTrigger: {
               trigger: cardsRef.current,
               start: 'top 85%',
+              toggleActions: 'play reverse play reverse', 
             },
           }
         );
-      }, sectionRef);
+      } else if (tabContentRef.current) {
+        gsap.fromTo(
+          tabContentRef.current,
+          { y: 40, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: tabContentRef.current,
+              start: 'top 85%',
+              toggleActions: 'play reverse play reverse',
+            },
+          }
+        );
+      }
+    }, sectionRef);
 
-      return () => ctx.revert();
-    }
+    return () => ctx.revert();
   }, [activeTab]);
 
   return (
@@ -77,11 +95,11 @@ export default function ServicesSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight mb-8">
-            {copy.title}
-          </h2>
+          {copy.title}
+        </h2>
 
         {/* Tab Buttons */}
-        <div className="flex flex-wrap  gap-2 sm:gap-3 mb-12">
+        <div className="flex flex-wrap gap-2 sm:gap-3 mb-12">
           {tabs.map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
@@ -92,10 +110,10 @@ export default function ServicesSection() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center gap-2.5 px-5 py-3 rounded-lg text-sm font-semibold transition-all duration-200 ${
                   isActive
-                    ? 'bg-gb-primary text-white shadow-md  scale-105'
+                    ? 'bg-gb-primary text-white shadow-md scale-105'
                     : 'bg-gray-300 text-black '
                 }`}
-              >  
+              >
                 <span>{tab.label}</span>
               </button>
             );
@@ -126,12 +144,11 @@ export default function ServicesSection() {
                   <div>
                     {/* Car Image Illustration */}
                     <div className="relative h-32 -mx-6 mb-5 flex items-center">
-                   
                       <span
                         aria-hidden="true"
                         className="absolute left-0 top-1/2 h-20 w-0 -translate-y-1/2 rounded-r-xl bg-white transition-all duration-700 group-hover:w-24 ease-in-out"
                       />
-                    
+
                       <img
                         src={service.image}
                         alt={service.title}
@@ -154,7 +171,7 @@ export default function ServicesSection() {
 
         {/* TAB 2: GARIBOOK BUSINESS */}
         {activeTab === 'business' && (
-          <div className="bg-slate-50  ">
+          <div ref={tabContentRef} className="bg-slate-50">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               <div className="lg:col-span-6 space-y-5">
                 <h3 className="text-3xl lg:text-5xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
@@ -166,7 +183,7 @@ export default function ServicesSection() {
                 <div className="pt-4">
                   <a
                     href="#"
-                    className="inline-flex items-center gap-3 px-7 py-3.5 rounded-xl font-bold text-white bg-gb-primary  shadow transition-all duration-300 hover:scale-105"
+                    className="inline-flex items-center gap-3 px-7 py-3.5 rounded-xl font-bold text-white bg-gb-primary shadow transition-all duration-300 hover:scale-105"
                   >
                     <span>Learn More</span>
                     <ArrowRight className="w-4 h-4" />
@@ -188,7 +205,7 @@ export default function ServicesSection() {
 
         {/* TAB 3: GARIBOOK CLUB */}
         {activeTab === 'club' && (
-          <div className="bg-slate-50">
+          <div ref={tabContentRef} className="bg-slate-50">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               <div className="lg:col-span-6 space-y-5">
                 <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 leading-tight">
@@ -222,17 +239,16 @@ export default function ServicesSection() {
 
         {/* TAB 4: VMS */}
         {activeTab === 'vms' && (
-          <div className="bg-slate-50">
+          <div ref={tabContentRef} className="bg-slate-50">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               <div className="lg:col-span-6 space-y-5">
-               
                 <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 leading-tight">
                   Vehicle Management System - VMS
                 </h3>
                 <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
                   Just like Garibook Business makes traveling easy for your team, our Vehicle Management System (VMS) helps you take care of your own vehicles. VMS is a powerful platform that monitors health, fuel, live telemetry, and driver logs.
                 </p>
-               
+
                 <div className="pt-4">
                   <a
                     href="#"
@@ -244,7 +260,7 @@ export default function ServicesSection() {
                 </div>
               </div>
               <div className="lg:col-span-6">
-                <div className="rounded-2xl overflow-hidden  ">
+                <div className="rounded-2xl overflow-hidden">
                   <img
                     src="/assets/images/vms/dashboard.png"
                     alt="Garibook VMS"

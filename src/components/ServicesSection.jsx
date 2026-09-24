@@ -154,38 +154,21 @@ export default function ServicesSection() {
 
         {/* TAB 2: GARIBOOK BUSINESS */}
         {activeTab === 'business' && (
-          <div className="bg-slate-50 rounded-3xl p-6 sm:p-10 lg:p-14 border border-slate-200">
+          <div className="bg-slate-50  ">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               <div className="lg:col-span-6 space-y-5">
-                <span className="text-xs font-bold text-gb-primary uppercase tracking-widest bg-white px-3 py-1 rounded-full border border-slate-200">
-                  Enterprise Travel Solutions
-                </span>
-                <h3 className="text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
+                <h3 className="text-3xl lg:text-5xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
                   Modern Car Rentals <br /> For Business
                 </h3>
                 <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
                   Simplify your corporate transportation, ensure on-time team mobility, and gain complete control over travel expenditure with our centralized billing and employee dispatch dashboard.
                 </p>
-                <div className="space-y-3 pt-2">
-                  <div className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-gb-primary shrink-0 mt-0.5" />
-                    <span className="text-sm text-slate-700">Automated corporate invoicing and GST/tax compliance</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-gb-primary shrink-0 mt-0.5" />
-                    <span className="text-sm text-slate-700">Dedicated fleet management and priority driver allocation</span>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-gb-primary shrink-0 mt-0.5" />
-                    <span className="text-sm text-slate-700">Live GPS tracking and employee safety monitoring</span>
-                  </div>
-                </div>
                 <div className="pt-4">
                   <a
-                    href="#contact"
-                    className="inline-flex items-center gap-3 px-7 py-3.5 rounded-xl font-bold text-white bg-gb-primary hover:bg-gb-primary-dark shadow transition-all duration-200"
+                    href="#"
+                    className="inline-flex items-center gap-3 px-7 py-3.5 rounded-xl font-bold text-white bg-gb-primary  shadow transition-all duration-300 hover:scale-105"
                   >
-                    <span>Contact Business Team</span>
+                    <span>Learn More</span>
                     <ArrowRight className="w-4 h-4" />
                   </a>
                 </div>

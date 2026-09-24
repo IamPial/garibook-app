@@ -6,7 +6,7 @@ export default function Footer() {
   const { lang, t } = useLanguage();
   const bn = lang === 'bn';
     const logoSrc = lang === 'bn'
-      ? '/assets/images/Garibook-Logo-Bangla_footer.png'
+      ? '/assets/images/Garibook_Logo_Bangla_footer.png'
       : '/assets/images/Garibook_footer_Logo.svg';
 
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useLanguage } from '../context/LanguageContext';
@@ -9,6 +9,8 @@ export default function StatsSection() {
   const { t } = useLanguage();
   const copy = t.sections.stats;
   const sectionRef = useRef(null);
+  const headingRef = useRef(null);
+  const statsRef = useRef(null);
   const countRefs = useRef([]);
 
   const stats = [
@@ -18,94 +20,125 @@ export default function StatsSection() {
     { target: 64, suffix: '', label: copy.districts },
   ];
 
-  useEffect(() => {
+  const words = `${copy.title} ${copy.highlight}`.split(' ');
+
+  // useLayoutEffect: প্রথম paint এর আগেই লেখা লুকিয়ে ফেলে, তাই একবার ঝলকে পুরো হেডলাইন দেখা যায় না
+  useLayoutEffect(() => {
+    const format = (i, v) => `${Math.floor(v).toLocaleString()}${stats[i].suffix}`;
+
+    // যাদের "reduce motion" চালু, তাদের সরাসরি চূড়ান্ত সংখ্যা দেখাই
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      countRefs.current.forEach((el, i) => el && (el.textContent = format(i, stats[i].target)));
+      return undefined;
+    }
+
     const ctx = gsap.context(() => {
-      // Staggered reveal for the entire stats block
+      // 1) হেডলাইন: শব্দ ধরে ধরে নিচ থেকে উঠে আসে
       gsap.fromTo(
-        sectionRef.current.querySelectorAll('.stat-item'),
-        { y: 30, opacity: 0 },
+        '.hl-word',
+        { y: 60, opacity: 0 },
         {
           y: 0,
           opacity: 1,
-          stagger: 0.15,
-          duration: 0.8,
+          duration: 1,
+          delay: 0.3,
           ease: 'power3.out',
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: 'top 80%',
-          },
+          stagger: 0.1,
+          scrollTrigger: { trigger: headingRef.current, start: 'top 80%', once: true },
         }
       );
 
-      // GSAP Numeric Counter Animation (Animation Requirement #2)
-      countRefs.current.forEach((el, index) => {
+      // 2) স্ট্যাটস: এক টাইমলাইনে reveal + কাউন্টার একসাথে চলে
+      const tl = gsap.timeline({
+        scrollTrigger: { trigger: statsRef.current, start: 'top 92%', once: true },
+      });
+      tl.fromTo(
+        '.stat-item',
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, stagger: 0.15, duration: 0.8, ease: 'power3.out' }
+      );
+      countRefs.current.forEach((el, i) => {
         if (!el) return;
-        const targetVal = stats[index].target;
         const obj = { val: 0 };
-
-        gsap.to(obj, {
-          val: targetVal,
-          duration: 2,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 85%',
-            once: true,
+        tl.to(
+          obj,
+          {
+            val: stats[i].target,
+            duration: 2,
+            ease: 'power2.out',
+            onUpdate: () => { el.textContent = format(i, obj.val); },
           },
-          onUpdate: () => {
-            const formatted = Math.floor(obj.val).toLocaleString();
-            el.innerText = `${formatted}${stats[index].suffix}`;
-          },
-        });
+          0.2
+        );
       });
     }, sectionRef);
 
+    
+    document.fonts?.ready.then(() => ScrollTrigger.refresh());
+
     return () => ctx.revert();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <section
       ref={sectionRef}
-      className="relative pt-24 pb-20 bg-slate-900 text-white overflow-hidden -mt-16"
+      className="relative -mt-16 pt-32 sm:pt-44 pb-32 sm:pb-36 overflow-hidden text-white bg-[linear-gradient(90deg,#0035c8_0%,#0d52ff_100%)]"
     >
-      {/* Subtle background glow */}
-      <div className="absolute top-0 right-1/4 w-96 h-96 bg-gb-primary/20 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 left-1/3 w-80 h-80 bg-amber-500/10 rounded-full blur-[100px] pointer-events-none" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          {/* Headline */}
-          <div className="lg:col-span-5">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
-              {copy.title} <br className="hidden sm:block" />
-              <span className="text-gb-warning">{copy.highlight}</span>
-            </h2>
-            <p className="mt-4 text-slate-400 text-sm sm:text-base leading-relaxed">
-              {copy.description}
-            </p>
-          </div>
+        {/* Headline */}
+        <h2 ref={headingRef} className="max-w-210 text-3xl sm:text-4xl lg:text-[44px] font-bold leading-tight tracking-tight">
+          {words.map((word, i) => (
+            <span key={i} className="hl-word inline-block">
+              {word}{i < words.length - 1 ? '\u00A0' : ''}
+            </span>
+          ))}
+        </h2>
 
-          {/* Stats grid */}
-          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8">
+        {/* Stats */}
+        <div ref={statsRef} className="mt-14 lg:mt-24 flex lg:justify-end">
+          <div className="grid grid-cols-2 sm:flex gap-x-8 sm:gap-x-10 gap-y-6">
             {stats.map((stat, idx) => (
-              <div
-                key={stat.label}
-                className="stat-item flex flex-col p-4 sm:p-5 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-sm hover:border-gb-warning/30 transition-colors"
-              >
-                <span
-                  ref={(el) => (countRefs.current[idx] = el)}
-                  className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gb-warning tracking-tight"
-                >
-                  0{stat.suffix}
+              <div key={stat.label} className="stat-item">
+                <span className="grid text-2xl sm:text-[28px] font-extrabold leading-none tabular-nums text-gb-warning">
+                  <span className="col-start-1 row-start-1 invisible" aria-hidden="true">
+                    {stat.target.toLocaleString()}{stat.suffix}
+                  </span>
+                  <span ref={(el) => (countRefs.current[idx] = el)} className="col-start-1 row-start-1">
+                    0{stat.suffix}
+                  </span>
                 </span>
-                <span className="mt-2 text-xs sm:text-sm font-medium text-slate-300">
-                  {stat.label}
-                </span>
+                <span className="mt-1.5 block text-sm font-semibold text-white">{stat.label}</span>
               </div>
             ))}
           </div>
         </div>
       </div>
+
+      {/* বিল্ডিং ফ্রেম: বাম দিকে অনবরত সরে (loop), গাড়িটা ডানদিকে চলছে এমন মনে হয় */}
+      <style>{`
+        @keyframes gb-skyline-scroll { to { transform: translateX(calc(var(--tile) * -1)); } }
+        .gb-skyline-track { animation: gb-skyline-scroll 25s linear infinite; will-change: transform; }
+        @media (prefers-reduced-motion: reduce) { .gb-skyline-track { animation: none; } }
+      `}</style>
+      <div
+        aria-hidden="true"
+        className="absolute bottom-0 left-0 w-full h-15 sm:h-19.5 overflow-hidden pointer-events-none [--tile:1477px] sm:[--tile:1920px]"
+      >
+        {/* প্রস্থ = স্ক্রিন + ১টা পুরো ছবি; ছবির প্রস্থ (--tile) পরিমাণ সরলেই ঠিক আগের অবস্থানে ফিরে আসে */}
+        <div
+          className="gb-skyline-track h-full bg-[url('/assets/images/stats/Building_frame.png')] bg-repeat-x bg-bottom-left bg-size-[auto_60px] sm:bg-size-[auto_78px]"
+          style={{ width: 'calc(100% + var(--tile))' }}
+        />
+      </div>
+
+    
+      <img
+        src="/assets/images/stats/Moveable_Car.gif"
+        alt=""
+        aria-hidden="true"
+        className="absolute bottom-0 left-4 w-32 sm:w-40 lg:w-48 translate-y-[7%] pointer-events-none select-none"
+      />
     </section>
   );
 }

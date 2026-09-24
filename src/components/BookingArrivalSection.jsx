@@ -105,6 +105,7 @@ export default function BookingArrivalSection() {
         {/* Asymmetric Image Grid */}
         <div ref={gridRef} className="grid grid-cols-2 lg:grid-cols-12 gap-4 sm:gap-6">
         
+        {/* first image */}
           <div className="col-span-2 lg:col-span-8 rounded-2xl overflow-hidden border border-white/10 relative h-48 sm:h-80">
             <img
               src="/assets/images/services/explore.jpeg"
@@ -113,6 +114,7 @@ export default function BookingArrivalSection() {
             />
           </div>
 
+         {/* second image */}
           <div className="col-span-1 lg:col-span-4 rounded-2xl overflow-hidden border border-white/10 relative h-48 sm:h-80">
             <img
               src="/assets/images/services/freedom.jpg"
@@ -121,15 +123,16 @@ export default function BookingArrivalSection() {
             />
           </div>
 
-          <div className="col-span-1 lg:col-span-4 rounded-2xl overflow-hidden border border-white/10 relative h-48 sm:h-72 bg-slate-900 flex items-center justify-center p-4 sm:p-6">
+         {/*third image  */}
+          <div className="col-span-1 lg:col-span-4 rounded-2xl overflow-hidden border border-white/10 relative h-48 sm:h-72 ">
             <img
               src="/assets/images/services/safe_travel.svg"
               alt="Safe Travel"
-              className="max-h-36 sm:max-h-48 w-auto object-contain"
+              className="w-full h-full object-cover"
             />
           </div>
 
-         
+          {/* fourth image */}
           <div className="col-span-1 lg:col-span-4 rounded-2xl overflow-hidden border border-white/10 relative h-48 sm:h-72">
             <img
               src="/assets/images/services/prefarred_car.jpg"
@@ -138,14 +141,14 @@ export default function BookingArrivalSection() {
             />
           </div>
 
-          
+          {/* fifth image */}
           <div className="col-span-1 lg:col-span-4 rounded-2xl overflow-hidden border border-white/10 relative h-48 sm:h-72">
             <img
               src="/assets/images/services/smooth.jpg"
               alt="Smooth Journey"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-linear-to-t from-slate-950/80 via-transparent to-transparent flex items-end p-6" />
+           
           </div>
         </div>
       </div>

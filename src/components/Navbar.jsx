@@ -7,7 +7,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { lang, toggleLanguage, t } = useLanguage();
   const logoSrc = lang === 'bn'
-    ? '/assets/images/garibook-logo-bangla.png'
+    ? '/assets/images/Garibook-header-logo-bangla.png'
     : '/assets/images/garibook-logo.svg';
 
   useEffect(() => {

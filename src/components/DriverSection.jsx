@@ -17,7 +17,7 @@ export default function DriverSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // ১. সেকশন মেইন টাইটেল অ্যানিমেশন
+     // title 
       gsap.fromTo(
         titleRef.current,
         { y: 30, opacity: 0 },
@@ -35,7 +35,7 @@ export default function DriverSection() {
         }
       );
 
-      // ২. বাম পাশের টেক্সট ও বাটন অ্যানিমেশন (Fade-Up)
+      // for left side content
       gsap.fromTo(
         leftContentRef.current,
         { x: -50, opacity: 0 },
@@ -53,7 +53,7 @@ export default function DriverSection() {
         }
       );
 
-      // ৩. ডানপাশের ফোন অ্যাপ স্ক্রিনের পপ-আপ অ্যানিমেশন (Scale & Slide up)
+      // for image
       gsap.fromTo(
         phoneImageRef.current,
         { y: 60, opacity: 0, scale: 0.85 },
@@ -62,7 +62,7 @@ export default function DriverSection() {
           opacity: 1,
           scale: 1,
           duration: 0.9,
-          ease: 'back.out(1.4)', // হালকা বাউন্স পপ-আপ ইফেক্ট
+          ease: 'back.out(1.4)', 
           scrollTrigger: {
             trigger: phoneImageRef.current,
             start: 'top 85%',
@@ -81,7 +81,7 @@ export default function DriverSection() {
     <section ref={sectionRef} id="smart-driver" className="py-10 sm:py-16 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
-        <h2 ref={titleRef} className="mt-3 text-3xl sm:text-[46px] font-bold text-gb-dark tracking-tight mb-10">
+        <h2 ref={titleRef} className="mt-3 text-3xl max-w-xl sm:text-[40px] font-bold text-gb-dark tracking-tight mb-10">
           {copy.title}
         </h2>
 
@@ -89,7 +89,7 @@ export default function DriverSection() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
             {/* Left Content */}
             <div ref={leftContentRef} className="lg:col-span-7 space-y-6 p-8 sm:p-14 lg:p-20">
-              <h3 className="text-3xl sm:text-4xl lg:text-6xl font-bold text-gb-primary tracking-tight leading-[1.1]">
+              <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gb-primary tracking-tight leading-[1.1]">
                 {copy.freedom} <br />
                 <span className="text-gb-primary">{copy.freedomTitle}</span>
               </h3>

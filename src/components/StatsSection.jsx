@@ -14,9 +14,9 @@ export default function StatsSection() {
   const countRefs = useRef([]);
 
   const stats = [
-    { target: 150000, suffix: '+', label: copy.tripRequests },
-    { target: 100000, suffix: '+', label: copy.customers },
-    { target: 5000, suffix: '+', label: copy.drivers },
+    { target: 350000, suffix: '+', label: copy.tripRequests },
+    { target: 850000, suffix: '+', label: copy.customers },
+    { target: 35000, suffix: '+', label: copy.drivers },
     { target: 64, suffix: '', label: copy.districts },
   ];
 
@@ -106,7 +106,7 @@ export default function StatsSection() {
           <div className="grid grid-cols-2 sm:flex gap-x-8 sm:gap-x-10 gap-y-6">
             {stats.map((stat, idx) => (
               <div key={stat.label} className="stat-item">
-                <span className="grid text-2xl sm:text-[28px] font-extrabold leading-none tabular-nums text-gb-warning">
+                <span className="grid text-2xl sm:text-4xl font-extrabold leading-none tabular-nums text-[#f0c40b]">
                   <span className="col-start-1 row-start-1 invisible" aria-hidden="true">
                     {stat.target.toLocaleString()}{stat.suffix}
                   </span>

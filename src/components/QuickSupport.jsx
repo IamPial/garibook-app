@@ -21,19 +21,20 @@ export default function QuickSupport() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-3">
-      {/* Expanded Support Card */}
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3 select-none">
+      
+      {/* Expanded Support Card Drawer */}
       {isDrawerOpen && (
-        <div className="bg-white rounded-3xl p-5 shadow-2xl border border-slate-200 w-72 sm:w-80 animate-in fade-in slide-in-from-bottom-5 duration-200">
+        <div className="bg-white rounded-3xl p-5 shadow-2xl border border-slate-100 w-72 sm:w-80 animate-in fade-in slide-in-from-bottom-5 duration-200 mb-2">
           <div className="flex items-center justify-between pb-3 border-b border-slate-100">
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="w-2.5 h-2.5 rounded-full bg-gb-primary animate-pulse" />
               <h4 className="font-bold text-slate-900 text-sm">{bn ? 'গাড়িবুক ২৪/৭ হেল্প ডেস্ক' : 'Garibook 24/7 Help Desk'}</h4>
             </div>
             <button
               type="button"
               onClick={() => setIsDrawerOpen(false)}
-              className="p-1 rounded-full text-slate-400 hover:text-slate-600 hover:bg-slate-100"
+              className="p-1 rounded-full text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors"
             >
               <X className="w-4 h-4" />
             </button>
@@ -46,9 +47,9 @@ export default function QuickSupport() {
           <div className="space-y-2">
             <a
               href="tel:09678112233"
-              className="flex items-center gap-3 p-2.5 rounded-xl bg-slate-50 hover:bg-gb-primary-subtle text-slate-800 hover:text-gb-primary transition-colors border border-slate-200/60"
+              className="flex items-center gap-3 p-2.5 rounded-xl bg-slate-50 hover:bg-blue-50 text-slate-800 hover:text-[#0052FF] transition-colors border border-slate-200/60"
             >
-              <div className="w-8 h-8 rounded-lg bg-emerald-100 text-gb-primary flex items-center justify-center shrink-0">
+              <div className="w-8 h-8 rounded-lg bg-blue-100 text-[#0052FF] flex items-center justify-center shrink-0">
                 <Phone className="w-4 h-4" />
               </div>
               <div className="text-left">
@@ -61,9 +62,9 @@ export default function QuickSupport() {
               href="https://wa.me/8801700000000?text=Hi%20Garibook,%20I%20need%20assistance%20with%20car%20rental"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 p-2.5 rounded-xl bg-slate-50 hover:bg-emerald-50 text-slate-800 hover:text-emerald-700 transition-colors border border-slate-200/60"
+              className="flex items-center gap-3 p-2.5 rounded-xl bg-slate-50 hover:bg-emerald-50 text-slate-800 hover:text-gb-primary transition-colors border border-slate-200/60"
             >
-              <div className="w-8 h-8 rounded-lg bg-emerald-500 text-white flex items-center justify-center shrink-0">
+              <div className="w-8 h-8 rounded-lg bg-gb-primary text-white flex items-center justify-center shrink-0">
                 <MessageCircle className="w-4 h-4" />
               </div>
               <div className="text-left">
@@ -77,40 +78,44 @@ export default function QuickSupport() {
             <span className="flex items-center gap-1">
               <Clock className="w-3 h-3" /> {bn ? 'গড় উত্তর: ২ মিনিট' : 'Average response: 2 mins'}
             </span>
-            <span className="flex items-center gap-1 text-emerald-600 font-semibold">
+            <span className="flex items-center gap-1 text-gb-primary font-semibold">
               <ShieldCheck className="w-3 h-3" /> {bn ? 'যাচাইকৃত সহায়তা' : 'Verified Help'}
             </span>
           </div>
         </div>
       )}
 
-      {/* Floating Buttons Row */}
-      <div className="flex items-center gap-3">
-        {/* Support Bubble Toggle */}
-        <button
-          type="button"
-          onClick={() => setIsDrawerOpen(!isDrawerOpen)}
-          className="flex items-center gap-2.5 px-4 py-3 rounded-full bg-slate-900 text-white shadow-2xl hover:bg-gb-primary transition-all duration-200 group active:scale-95 cursor-pointer border border-slate-800"
-          title={bn ? '২৪/৭ গ্রাহক সহায়তা' : '24/7 Customer Assistance'}
-        >
-          <div className="relative">
-            <MessageSquare className="w-4 h-4 text-gb-warning" />
-            <span className="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-emerald-400 ring-2 ring-slate-900" />
-          </div>
-          <span className="text-xs font-bold hidden sm:inline">{bn ? '২৪/৭ হেল্পলাইন' : '24/7 Helpline'}</span>
-        </button>
-
-        {/* Back To Top Button */}
+      {/* Vertical Column for Floating Action Buttons */}
+      <div className="flex flex-col items-center gap-3">
+        
+        {/* Rounded Square Back To Top Button */}
         {showBackToTop && (
           <button
             type="button"
             onClick={scrollToTop}
-            className="p-3 rounded-full bg-white text-slate-700 border border-slate-200 shadow-xl hover:bg-gb-primary hover:text-white hover:border-gb-primary transition-all duration-200 active:scale-90 cursor-pointer"
+            className="relative z-10 w-12 h-12 rounded-2xl bg-[#0052FF] text-white flex items-center justify-center shadow-lg hover:bg-blue-700 transition-all duration-200 active:scale-95 cursor-pointer"
             aria-label="Back to top"
+            title={bn ? 'উপরে যান' : 'Back to top'}
           >
-            <ArrowUp className="w-5 h-5" />
+            <ArrowUp className="w-6 h-6 stroke-[2.5]" />
           </button>
         )}
+
+        {/* Circular Blue Message Support Button */}
+        <button
+          type="button"
+          onClick={() => setIsDrawerOpen(!isDrawerOpen)}
+          className="w-14 h-14 rounded-full bg-[#0052FF] text-white flex items-center justify-center shadow-xl hover:bg-blue-700 transition-all duration-200 active:scale-95 cursor-pointer"
+          aria-label="Support Chat"
+          title={bn ? '২৪/৭ গ্রাহক সহায়তা' : '24/7 Customer Assistance'}
+        >
+          {isDrawerOpen ? (
+            <X className="w-6 h-6" />
+          ) : (
+            <MessageSquare className="w-6 h-6 fill-white stroke-none" />
+          )}
+        </button>
+
       </div>
     </div>
   );

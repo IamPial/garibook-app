@@ -5,14 +5,18 @@ import { useLanguage } from '../context/LanguageContext';
 export default function Footer() {
   const { lang, t } = useLanguage();
   const bn = lang === 'bn';
+    const logoSrc = lang === 'bn'
+      ? '/assets/images/Garibook-Logo-Bangla_footer.png'
+      : '/assets/images/Garibook_footer_Logo.svg';
+
   return (
-    <footer className="bg-slate-950 text-slate-400 font-sans border-t border-slate-900 pt-16 pb-12">
+    <footer className="bg-gb-dark text-white font-sans pt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Links Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-16 border-b border-slate-800">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-16 ">
           {/* Col 1: garibook */}
           <div className="lg:col-span-3 space-y-4">
-            <h4 className="text-white font-bold text-base uppercase tracking-wider">
+            <h4 className="text-white font-bold text-base  tracking-wider">
               garibook
             </h4>
             <ul className="space-y-2.5 text-sm">
@@ -52,7 +56,7 @@ export default function Footer() {
 
           {/* Col 2: Services */}
           <div className="lg:col-span-3 space-y-4">
-            <h4 className="text-white font-bold text-base uppercase tracking-wider">
+            <h4 className="text-white font-bold text-base tracking-wider">
               {bn ? 'সেবা' : 'Services'}
             </h4>
             <ul className="space-y-2.5 text-sm">
@@ -81,7 +85,7 @@ export default function Footer() {
 
           {/* Col 3: Become Our Partner */}
           <div className="lg:col-span-3 space-y-4">
-            <h4 className="text-white font-bold text-base uppercase tracking-wider">
+            <h4 className="text-white font-bold text-base tracking-wider">
               {bn ? 'পার্টনার হোন' : 'Become Our Partner'}
             </h4>
             <ul className="space-y-2.5 text-sm">
@@ -105,7 +109,7 @@ export default function Footer() {
 
           {/* Col 4: Contacts */}
           <div className="lg:col-span-3 space-y-4">
-            <h4 className="text-white font-bold text-base uppercase tracking-wider">
+            <h4 className="text-white font-bold text-base tracking-wider">
               {bn ? 'যোগাযোগ' : 'Contacts'}
             </h4>
             <ul className="space-y-3 text-sm">
@@ -131,25 +135,22 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Mid Row: Download CTA & Corporate Owners (NRB Solution & Link 3) */}
-        <div className="py-12 border-b border-slate-800 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        {/* Mid Row: Download CTA & Corporate Owners */}
+        <div className="py-12  grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Download App Mini Box */}
           <div className="lg:col-span-6 space-y-4">
             <h3 className="text-2xl font-extrabold text-white">
               Download Our <br />
               Garibook Mobile App
             </h3>
-            <p className="text-xs sm:text-sm text-slate-400 max-w-md">
-              Book anywhere, select bids, and track your trip on Android & iOS.
-            </p>
             <div>
               <a
                 href="https://onelink.to/gbweb"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-white bg-gb-primary hover:bg-gb-primary-dark transition-all text-sm shadow active:scale-95"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-white bg-gb-primary hover:scale-105 transition-all text-sm shadow active:scale-95"
               >
-                <span>{t.sections.download.direct}</span>
+                <span>Download App</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
             </div>
@@ -207,9 +208,9 @@ export default function Footer() {
         <div className="pt-8 pb-10 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-slate-400">
           <div className="flex flex-wrap items-center gap-6">
             <img
-              src="/assets/images/gaibook-logo.svg"
+              src={logoSrc}
               alt="Garibook"
-              className="h-8 w-auto brightness-200"
+              className="h-10 w-auto brightness-200"
             />
             <a href="#terms" className="hover:text-white transition-colors">
               {bn ? 'শর্তাবলি' : 'Terms & Conditions'}
@@ -225,17 +226,14 @@ export default function Footer() {
             <p className="text-slate-400">© 2026 Garibook.com. All rights reserved.</p>
           </div>
         </div>
+      </div>
 
-        {/* SSL Commerz Trust Stripe */}
-        <div className="mt-4 pt-6 border-t border-slate-900 flex justify-center">
-          <div className="max-w-4xl w-full opacity-70 hover:opacity-100 transition-opacity">
-            <img
-              src="/assets/images/clients/ssl.png"
-              alt="Verified Payment Gateways - SSL Commerz"
-              className="w-full h-auto object-contain rounded-lg"
-            />
-          </div>
-        </div>
+      <div className="mt-4 w-full">
+        <img
+          src="/assets/images/clients/ssl.png"
+          alt="Verified Payment Gateways - SSL Commerz"
+          className="block w-full h-auto"
+        />
       </div>
     </footer>
   );

@@ -28,7 +28,6 @@ export default function StatsSection() {
 
     const ctx = gsap.context(() => {
       // for heading
-      // toggleActions: ঢুকলে restart, স্ক্রিনের বাইরে গেলে reset -> আবার এলে নতুন করে চলে
       gsap.fromTo(
         '.hl-word',
         { y: 60, opacity: 0 },
@@ -144,7 +143,7 @@ export default function StatsSection() {
         src="/assets/images/stats/Moveable_Car.gif"
         alt=""
         aria-hidden="true"
-        className="absolute bottom-0 left-4 w-32 sm:w-40 lg:w-48 translate-y-[7%] pointer-events-none select-none"
+        className="absolute bottom-0 left-10 sm:left-20 w-32 sm:w-40 lg:w-48 translate-y-[7%] pointer-events-none select-none"
       />
     </section>
   );
